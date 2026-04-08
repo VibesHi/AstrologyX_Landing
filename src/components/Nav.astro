@@ -1,46 +1,36 @@
 ---
-const APP_STORE_URL = 'https://apps.apple.com/app/id1449148271';
+import { APP_STORE_URL } from '../config';
 ---
 <header
   id="site-nav"
-  class="fixed top-0 left-0 right-0 z-40 transition-all duration-300"
-  style="background: transparent;"
+  class="fixed top-0 left-0 right-0 z-40 bg-[#F9F7F4]"
+  style="border-bottom: 1px solid #EBEBEB;"
 >
-  <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-    <a href="/" class="text-white font-black tracking-tight text-lg leading-none select-none">
+  <div class="max-w-5xl mx-auto px-6 h-15 flex items-center justify-between" style="height: 60px;">
+    <a
+      href="/"
+      class="font-black tracking-tight text-base leading-none select-none"
+      style="color: #111111;"
+    >
       AstrologyX
     </a>
     <a
       href={APP_STORE_URL}
       target="_blank"
       rel="noopener noreferrer"
-      class="text-xs font-semibold tracking-widest uppercase text-white/80 hover:text-white transition-colors duration-200 border border-white/20 hover:border-white/60 px-4 py-2 rounded-full"
+      class="text-xs font-semibold tracking-widest uppercase transition-all duration-200"
+      style="
+        color: #111111;
+        border: 1px solid #D8D8D8;
+        border-radius: 100px;
+        padding: 0.45rem 1.1rem;
+      "
+      onmouseover="this.style.borderColor='#111111'"
+      onmouseout="this.style.borderColor='#D8D8D8'"
     >
       Download
     </a>
   </div>
 </header>
-
-<script>
-  const nav = document.getElementById('site-nav');
-  let lastScroll = 0;
-
-  const update = () => {
-    const y = window.scrollY;
-    if (y > 80) {
-      nav?.style.setProperty('background', 'rgba(0,0,0,0.92)');
-      nav?.style.setProperty('backdrop-filter', 'blur(12px)');
-      nav?.style.setProperty('-webkit-backdrop-filter', 'blur(12px)');
-      nav?.style.setProperty('border-bottom', '1px solid rgba(255,255,255,0.06)');
-    } else {
-      nav?.style.setProperty('background', 'transparent');
-      nav?.style.setProperty('backdrop-filter', 'none');
-      nav?.style.setProperty('-webkit-backdrop-filter', 'none');
-      nav?.style.setProperty('border-bottom', 'none');
-    }
-    lastScroll = y;
-  };
-
-  window.addEventListener('scroll', update, { passive: true });
-  update();
-</script>
+<!-- Spacer so content doesn't sit under fixed nav -->
+<div style="height: 60px;" aria-hidden="true"></div>

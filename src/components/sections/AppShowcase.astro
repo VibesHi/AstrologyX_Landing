@@ -1,42 +1,54 @@
 ---
-const APP_STORE_URL = 'https://apps.apple.com/app/id1449148271';
+import { APP_STORE_URL } from '../../config';
 ---
 <section
   id="app-showcase"
-  class="bg-white section-pad"
+  class="section-pad"
+  style="background: #F9F7F4;"
   aria-label="App showcase"
 >
-  <div class="max-w-6xl mx-auto px-6">
-    <div class="flex flex-col lg:flex-row items-center gap-16">
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="flex flex-col lg:flex-row items-center gap-16 lg:gap-20">
 
-      <!-- Copy column -->
-      <div class="flex-1 max-w-lg reveal" id="showcase-copy">
-        <p class="text-xs font-semibold tracking-[0.25em] uppercase text-gray-400 mb-5">The App</p>
+      <!-- Copy -->
+      <div class="flex-1 max-w-md reveal" id="showcase-copy">
+        <span class="pill-tag mb-6 inline-flex">The app</span>
         <h2
-          class="font-black text-black leading-tight tracking-tight mb-6"
-          style="font-size: var(--text-headline);"
+          class="font-black leading-tight tracking-tight mb-6 mt-4"
+          style="font-size: var(--text-headline); color: #111111;"
         >
-          YOUR COSMOS,<br />
-          IN YOUR POCKET
+          Everything in your chart,<br />nothing you don't need
         </h2>
-        <p class="text-gray-500 leading-relaxed mb-8" style="font-size: var(--text-body-lg);">
-          AstrologyX renders your complete natal chart with planetary positions sourced from
-          real-time astronomical data. Every transit, every progression — visualised with
-          the clarity of a scientific instrument.
+        <p
+          class="mb-8 leading-relaxed"
+          style="font-size: var(--text-body-lg); color: #8A8A8A;"
+        >
+          AstrologyX renders your complete natal chart with planetary
+          positions sourced from real-time astronomical data.
+          Every transit, every progression — with the clarity of a scientific instrument.
         </p>
+
         <ul class="space-y-4 mb-10">
           {[
-            'Natal chart with all major & minor aspects',
-            'Daily AI-generated reading personalised to your chart',
-            'Transit tracker with real-time planetary movement',
-            'Synastry & composite charts for any relationship',
+            'Natal chart with all major aspects',
+            'Daily AI-generated reading, personalised',
+            'Real-time transit tracker',
+            'Synastry charts for any relationship',
           ].map((item) => (
-            <li class="flex items-start gap-3 text-gray-600" style="font-size: var(--text-body);">
-              <span class="mt-1.5 block w-1.5 h-1.5 rounded-full bg-black flex-shrink-0"></span>
+            <li
+              class="flex items-start gap-3"
+              style="font-size: var(--text-body); color: #8A8A8A;"
+            >
+              <span
+                class="flex-shrink-0 mt-0.5"
+                style="color: #BEBEBE; font-size: 0.65rem; line-height: 1.8;"
+                aria-hidden="true"
+              >✦</span>
               {item}
             </li>
           ))}
         </ul>
+
         <a
           href={APP_STORE_URL}
           target="_blank"
@@ -55,113 +67,79 @@ const APP_STORE_URL = 'https://apps.apple.com/app/id1449148271';
         </a>
       </div>
 
-      <!-- Phones column -->
-      <div class="flex items-end justify-center gap-6 reveal" id="showcase-phones">
-        <!-- Primary phone — taller -->
-        <div class="phone-frame" style="height: 520px; width: 255px;">
+      <!-- Single phone mockup -->
+      <div class="flex-shrink-0 flex justify-center reveal" id="showcase-phone">
+        <div class="phone-frame">
           <div class="phone-screen">
             <!-- Status bar -->
-            <div class="flex justify-between items-center mb-6 opacity-40">
-              <span class="text-white text-[10px]">9:41</span>
+            <div class="flex justify-between items-center mb-7" style="opacity: 0.35;">
+              <span style="color: white; font-size: 10px;">9:41</span>
               <div class="flex gap-1 items-center">
-                <span class="block w-4 h-2 border border-white/60 rounded-sm relative">
-                  <span class="absolute inset-0.5 right-1 bg-white/80 rounded-sm"></span>
+                <span
+                  class="block border rounded-sm relative"
+                  style="width: 18px; height: 9px; border-color: rgba(255,255,255,0.6);"
+                >
+                  <span
+                    class="absolute"
+                    style="inset: 2px 3px 2px 2px; background: rgba(255,255,255,0.8); border-radius: 1px;"
+                  ></span>
                 </span>
               </div>
             </div>
+
             <!-- Chart circle -->
-            <div class="flex justify-center mb-4">
-              <div class="relative w-40 h-40">
+            <div class="flex justify-center mb-5">
+              <div class="relative" style="width: 160px; height: 160px;">
                 <svg viewBox="0 0 160 160" class="w-full h-full" aria-hidden="true">
-                  <!-- Outer ring -->
-                  <circle cx="80" cy="80" r="74" stroke="white" stroke-width="0.5" fill="none" opacity="0.15"/>
-                  <!-- Houses -->
-                  {Array.from({length: 12}).map((_, i) => {
+                  <circle cx="80" cy="80" r="74" stroke="white" stroke-width="0.5" fill="none" opacity="0.12"/>
+                  <circle cx="80" cy="80" r="60" stroke="white" stroke-width="0.3" fill="none" opacity="0.08"/>
+                  {Array.from({ length: 12 }).map((_, i) => {
                     const angle = (i * 30 - 90) * Math.PI / 180;
-                    const x1 = 80 + 45 * Math.cos(angle);
-                    const y1 = 80 + 45 * Math.sin(angle);
-                    const x2 = 80 + 74 * Math.cos(angle);
-                    const y2 = 80 + 74 * Math.sin(angle);
-                    return `<line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" stroke="white" stroke-width="0.5" opacity="0.2"/>`;
+                    const x1 = (80 + 46 * Math.cos(angle)).toFixed(1);
+                    const y1 = (80 + 46 * Math.sin(angle)).toFixed(1);
+                    const x2 = (80 + 74 * Math.cos(angle)).toFixed(1);
+                    const y2 = (80 + 74 * Math.sin(angle)).toFixed(1);
+                    return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="white" stroke-width="0.5" opacity="0.18"/>`;
                   }).join('')}
-                  <!-- Inner circle -->
-                  <circle cx="80" cy="80" r="45" stroke="white" stroke-width="0.5" fill="none" opacity="0.2"/>
-                  <!-- Middle circle -->
-                  <circle cx="80" cy="80" r="60" stroke="white" stroke-width="0.3" fill="none" opacity="0.1"/>
+                  <circle cx="80" cy="80" r="46" stroke="white" stroke-width="0.5" fill="none" opacity="0.18"/>
                   <!-- Aspect lines -->
-                  <line x1="80" y1="6" x2="120" y2="140" stroke="white" stroke-width="0.5" opacity="0.3"/>
-                  <line x1="80" y1="6" x2="40" y2="140" stroke="white" stroke-width="0.5" opacity="0.2"/>
-                  <line x1="6" y1="80" x2="154" y2="80" stroke="white" stroke-width="0.5" opacity="0.15"/>
+                  <line x1="80" y1="6"  x2="118" y2="148" stroke="white" stroke-width="0.5" opacity="0.25"/>
+                  <line x1="80" y1="6"  x2="42"  y2="148" stroke="white" stroke-width="0.5" opacity="0.18"/>
+                  <line x1="6"  y1="80" x2="154" y2="80"  stroke="white" stroke-width="0.5" opacity="0.12"/>
                   <!-- Planet dots -->
-                  <circle cx="80" cy="6" r="3" fill="white" opacity="0.9"/>
-                  <circle cx="154" cy="80" r="2.5" fill="white" opacity="0.7"/>
-                  <circle cx="120" cy="140" r="2" fill="white" opacity="0.6"/>
-                  <circle cx="40" cy="140" r="2.5" fill="white" opacity="0.8"/>
-                  <circle cx="6" cy="80" r="2" fill="white" opacity="0.5"/>
-                  <circle cx="26" cy="30" r="2" fill="white" opacity="0.7"/>
+                  <circle cx="80"  cy="6"   r="3"   fill="white" opacity="0.9"/>
+                  <circle cx="154" cy="80"  r="2.5" fill="white" opacity="0.65"/>
+                  <circle cx="118" cy="148" r="2"   fill="white" opacity="0.55"/>
+                  <circle cx="42"  cy="148" r="2.5" fill="white" opacity="0.75"/>
+                  <circle cx="6"   cy="80"  r="2"   fill="white" opacity="0.45"/>
+                  <circle cx="24"  cy="28"  r="2"   fill="white" opacity="0.65"/>
                   <!-- Center label -->
-                  <text x="80" y="76" text-anchor="middle" fill="white" opacity="0.5" font-size="8" font-family="sans-serif">NATAL</text>
-                  <text x="80" y="88" text-anchor="middle" fill="white" opacity="0.3" font-size="6" font-family="sans-serif">CHART</text>
+                  <text x="80" y="77" text-anchor="middle" fill="white" opacity="0.3" font-size="7" font-family="sans-serif" letter-spacing="1">NATAL</text>
+                  <text x="80" y="88" text-anchor="middle" fill="white" opacity="0.2" font-size="5.5" font-family="sans-serif" letter-spacing="0.5">CHART</text>
                 </svg>
               </div>
             </div>
-            <!-- Name / data -->
-            <div class="text-center mb-4">
-              <p class="text-white text-xs tracking-widest uppercase opacity-50 mb-1">Birth Chart</p>
-              <p class="text-white font-bold text-sm tracking-tight">Aries Rising · Leo Sun</p>
-              <p class="text-white/30 text-[10px] mt-1">Scorpio Moon · Mercury in Gemini</p>
-            </div>
-            <!-- Mini planet list -->
-            <div class="space-y-2 mt-auto">
-              {[
-                ['☉', 'Sun', '14° Leo'],
-                ['☽', 'Moon', '22° Scorpio'],
-                ['↑', 'Asc', '03° Aries'],
-              ].map(([sym, name, pos]) => (
-                <div class="flex items-center justify-between">
-                  <div class="flex items-center gap-2">
-                    <span class="text-white/40 text-xs w-4">{sym}</span>
-                    <span class="text-white/60 text-xs">{name}</span>
-                  </div>
-                  <span class="text-white/40 text-[10px] font-mono">{pos}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
 
-        <!-- Secondary phone — slightly smaller, offset -->
-        <div class="phone-frame hidden sm:block" style="height: 440px; width: 220px; margin-bottom: 24px; opacity: 0.7;">
-          <div class="phone-screen">
-            <div class="mb-5">
-              <p class="text-white/30 text-[10px] tracking-widest uppercase mb-1">Today's Reading</p>
-              <p class="text-white font-bold text-xs tracking-tight">Apr 8, 2026</p>
+            <!-- Identity -->
+            <div class="text-center mb-5">
+              <p style="color: rgba(255,255,255,0.35); font-size: 9px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 4px;">Birth Chart</p>
+              <p style="color: white; font-weight: 700; font-size: 13px; letter-spacing: -0.2px;">Aries Rising · Leo Sun</p>
+              <p style="color: rgba(255,255,255,0.3); font-size: 10px; margin-top: 3px;">Scorpio Moon · Mercury in Gemini</p>
             </div>
-            <div class="border-t border-white/10 pt-4 mb-4">
-              <p class="text-white/50 text-[11px] leading-relaxed">
-                "Mars squares your natal Venus today, stirring a
-                restlessness that can be channelled into creative
-                work or honest conversation. Resist the urge
-                to force outcomes."
-              </p>
-            </div>
-            <div class="space-y-3 mt-auto">
+
+            <!-- Planet list -->
+            <div style="margin-top: auto;">
               {[
-                { planet: 'Mars ♂', event: 'Square Venus', intensity: 75 },
-                { planet: 'Jupiter ♃', event: 'Trine Sun', intensity: 55 },
-                { planet: 'Saturn ♄', event: 'Sextile Moon', intensity: 40 },
-              ].map(({ planet, event, intensity }) => (
-                <div>
-                  <div class="flex justify-between mb-1">
-                    <span class="text-white/50 text-[10px]">{planet}</span>
-                    <span class="text-white/30 text-[10px]">{event}</span>
+                ['☉', 'Sun',  '14° Leo'],
+                ['☽', 'Moon', '22° Scorpio'],
+                ['↑', 'Asc',  '03° Aries'],
+              ].map(([sym, name, pos]) => (
+                <div class="flex items-center justify-between" style="margin-bottom: 8px;">
+                  <div class="flex items-center gap-2">
+                    <span style="color: rgba(255,255,255,0.3); font-size: 11px; width: 14px;">{sym}</span>
+                    <span style="color: rgba(255,255,255,0.55); font-size: 11px;">{name}</span>
                   </div>
-                  <div class="h-px bg-white/10 relative">
-                    <div
-                      class="absolute top-0 left-0 h-full bg-white/40"
-                      style={`width: ${intensity}%`}
-                    ></div>
-                  </div>
+                  <span style="color: rgba(255,255,255,0.3); font-size: 10px; font-family: monospace;">{pos}</span>
                 </div>
               ))}
             </div>
@@ -173,7 +151,6 @@ const APP_STORE_URL = 'https://apps.apple.com/app/id1449148271';
 </section>
 
 <script>
-  const revealEls = ['showcase-copy', 'showcase-phones'];
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -185,7 +162,7 @@ const APP_STORE_URL = 'https://apps.apple.com/app/id1449148271';
     },
     { threshold: 0.15 }
   );
-  revealEls.forEach((id) => {
+  ['showcase-copy', 'showcase-phone'].forEach((id) => {
     const el = document.getElementById(id);
     if (el) observer.observe(el);
   });

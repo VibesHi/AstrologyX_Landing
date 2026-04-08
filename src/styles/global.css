@@ -7,34 +7,30 @@
   /* Color primitives */
   --color-black: #000000;
   --color-white: #ffffff;
-  --color-gray-50: #fafafa;
-  --color-gray-100: #f5f5f5;
-  --color-gray-200: #e5e5e5;
-  --color-gray-300: #d4d4d4;
-  --color-gray-400: #a3a3a3;
-  --color-gray-500: #737373;
-  --color-gray-600: #525252;
-  --color-gray-700: #404040;
-  --color-gray-800: #262626;
-  --color-gray-900: #171717;
-  --color-gray-950: #0a0a0a;
+  --color-cream: #F9F7F4;
+  --color-cream-dark: #F1EEE9;
+  --color-ink: #111111;
+  --color-ink-soft: #2A2A2A;
+  --color-stone: #8A8A8A;
+  --color-stone-light: #BEBEBE;
+  --color-border-light: #EBEBEB;
+  --color-border-medium: #D8D8D8;
 
   /* Semantic colors */
-  --color-bg-primary: #ffffff;
-  --color-bg-inverse: #000000;
-  --color-text-primary: #000000;
-  --color-text-inverse: #ffffff;
-  --color-text-muted: #737373;
-  --color-border: #e5e5e5;
-  --color-border-inverse: #262626;
+  --color-bg-page: #F9F7F4;
+  --color-bg-surface: #ffffff;
+  --color-bg-raised: #ffffff;
+  --color-text-primary: #111111;
+  --color-text-secondary: #8A8A8A;
+  --color-text-muted: #BEBEBE;
+  --color-border: #EBEBEB;
 
   /* Typography */
   --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Playfair Display", ui-serif, Georgia, serif;
-  --font-mono: ui-monospace, "Cascadia Code", "Source Code Pro", monospace;
 
   /* Fluid type scale */
-  --text-hero: clamp(2.5rem, 1.5rem + 5vw, 6rem);
+  --text-hero: clamp(2.75rem, 1.5rem + 5.5vw, 6.5rem);
   --text-display: clamp(2rem, 1rem + 3vw, 4rem);
   --text-headline: clamp(1.5rem, 1rem + 2vw, 2.25rem);
   --text-subhead: clamp(1.125rem, 0.9rem + 1vw, 1.5rem);
@@ -42,28 +38,18 @@
   --text-body: clamp(1rem, 0.9rem + 0.4vw, 1.125rem);
   --text-caption: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
 
-  /* Spacing scale (4px base) */
-  --space-1: 0.25rem;
-  --space-2: 0.5rem;
-  --space-3: 0.75rem;
-  --space-4: 1rem;
-  --space-6: 1.5rem;
-  --space-8: 2rem;
-  --space-12: 3rem;
-  --space-16: 4rem;
-  --space-24: 6rem;
-  --space-32: 8rem;
-  --space-48: 12rem;
-  --space-element: 1rem;
+  /* Spacing */
+  --space-section: 7rem;
   --space-component: 2rem;
-  --space-section: 6rem;
+  --space-element: 1rem;
 
   /* Animation */
+  --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-out: cubic-bezier(0.0, 0.0, 0.2, 1.0);
   --ease-in-out: cubic-bezier(0.4, 0.0, 0.2, 1.0);
   --duration-fast: 0.2s;
-  --duration-base: 0.35s;
-  --duration-slow: 0.6s;
+  --duration-base: 0.4s;
+  --duration-slow: 0.7s;
 }
 
 /* ── Base reset ─────────────────────────────────── */
@@ -78,7 +64,7 @@ html {
 
 body {
   font-family: var(--font-sans);
-  background-color: var(--color-bg-primary);
+  background-color: var(--color-bg-page);
   color: var(--color-text-primary);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
@@ -95,18 +81,20 @@ body {
   }
 }
 
-/* ── Fluid section spacing ──────────────────────── */
+/* ── Section spacing ────────────────────────────── */
 .section-pad {
   padding-top: var(--space-section);
   padding-bottom: var(--space-section);
 }
 
-/* ── Reveal animations ──────────────────────────── */
+/* ── Scroll reveal ──────────────────────────────── */
 .reveal {
   opacity: 0;
-  transform: translateY(24px);
-  transition: opacity var(--duration-slow) var(--ease-out),
-              transform var(--duration-slow) var(--ease-out);
+  transform: translateY(20px);
+  transition:
+    opacity var(--duration-slow) var(--ease-spring),
+    transform var(--duration-slow) var(--ease-spring);
+  will-change: transform, opacity;
 }
 
 .reveal.visible {
@@ -116,9 +104,11 @@ body {
 
 .reveal-stagger > * {
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity var(--duration-slow) var(--ease-out),
-              transform var(--duration-slow) var(--ease-out);
+  transform: translateY(16px);
+  transition:
+    opacity var(--duration-slow) var(--ease-spring),
+    transform var(--duration-slow) var(--ease-spring);
+  will-change: transform, opacity;
 }
 
 .reveal-stagger > *.visible {
@@ -127,45 +117,65 @@ body {
 }
 
 .reveal-stagger > *:nth-child(1) { transition-delay: 0ms; }
-.reveal-stagger > *:nth-child(2) { transition-delay: 100ms; }
-.reveal-stagger > *:nth-child(3) { transition-delay: 200ms; }
+.reveal-stagger > *:nth-child(2) { transition-delay: 80ms; }
+.reveal-stagger > *:nth-child(3) { transition-delay: 160ms; }
+.reveal-stagger > *:nth-child(4) { transition-delay: 240ms; }
+.reveal-stagger > *:nth-child(5) { transition-delay: 320ms; }
+.reveal-stagger > *:nth-child(6) { transition-delay: 400ms; }
 
-/* ── Pulsing dot ────────────────────────────────── */
-@keyframes pulse-dot {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.4; transform: scale(0.85); }
-}
-
-.pulse-dot {
-  animation: pulse-dot 2.4s ease-in-out infinite;
-}
-
-/* ── Scroll fade-in for hero ────────────────────── */
+/* ── Hero entry animations ──────────────────────── */
 @keyframes hero-in {
-  from { opacity: 0; transform: translateY(16px); }
+  from { opacity: 0; transform: translateY(14px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
 .hero-in {
-  animation: hero-in var(--duration-slow) var(--ease-out) both;
+  animation: hero-in var(--duration-slow) var(--ease-spring) both;
 }
 
-.hero-in-delay-1 { animation-delay: 0.15s; }
-.hero-in-delay-2 { animation-delay: 0.3s; }
-.hero-in-delay-3 { animation-delay: 0.45s; }
+.hero-in-delay-1 { animation-delay: 0.12s; }
+.hero-in-delay-2 { animation-delay: 0.24s; }
+.hero-in-delay-3 { animation-delay: 0.38s; }
+.hero-in-delay-4 { animation-delay: 0.52s; }
+
+/* ── Fade line (scaleX reveal) ──────────────────── */
+@keyframes line-draw {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+.fade-line {
+  transform-origin: left;
+  animation: line-draw 0.8s var(--ease-spring) both;
+}
+
+/* ── Pill tag ───────────────────────────────────── */
+.pill-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  border-radius: 100px;
+  border: 1px solid var(--color-border-light);
+  background: var(--color-bg-surface);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-stone);
+}
 
 /* ── Phone mockup ───────────────────────────────── */
 .phone-frame {
   position: relative;
-  width: 240px;
-  height: 490px;
-  border-radius: 36px;
-  border: 2px solid #262626;
-  background: #0a0a0a;
+  width: 260px;
+  height: 530px;
+  border-radius: 40px;
+  border: 1.5px solid #D0D0D0;
+  background: #1A1A1A;
   box-shadow:
-    0 0 0 1px #000,
-    inset 0 0 0 1px #333,
-    0 32px 64px rgba(0,0,0,0.4);
+    0 0 0 1px rgba(0,0,0,0.04),
+    0 24px 80px rgba(0,0,0,0.12),
+    0 8px 24px rgba(0,0,0,0.08);
   overflow: hidden;
   flex-shrink: 0;
 }
@@ -173,43 +183,36 @@ body {
 .phone-frame::before {
   content: '';
   position: absolute;
-  top: 12px;
+  top: 14px;
   left: 50%;
   transform: translateX(-50%);
-  width: 80px;
-  height: 6px;
+  width: 72px;
+  height: 5px;
   border-radius: 3px;
-  background: #222;
+  background: #333;
   z-index: 10;
 }
 
 .phone-screen {
   position: absolute;
   inset: 0;
-  background: #000;
+  background: #0D0D0D;
   display: flex;
   flex-direction: column;
-  padding: 32px 16px 20px;
+  padding: 36px 18px 22px;
   overflow: hidden;
 }
 
-/* ── Horizontal rule ────────────────────────────── */
-.rule {
-  width: 40px;
-  height: 1px;
-  background: currentColor;
-  flex-shrink: 0;
-}
-
-/* ── App Store badge ────────────────────────────── */
+/* ── App Store badge hover ──────────────────────── */
 .badge-appstore {
   display: inline-block;
-  transition: opacity var(--duration-fast) var(--ease-out),
-              transform var(--duration-fast) var(--ease-out);
+  transition:
+    opacity var(--duration-fast) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
 }
 .badge-appstore:hover {
-  opacity: 0.8;
-  transform: scale(1.03);
+  opacity: 0.75;
+  transform: scale(1.02);
 }
 
 /* ── Sticky mobile CTA bar ──────────────────────── */
@@ -219,34 +222,44 @@ body {
   left: 0;
   right: 0;
   z-index: 50;
-  background: #000;
-  border-top: 1px solid #1a1a1a;
+  background: #fff;
+  border-top: 1px solid var(--color-border-light);
   padding: 10px 20px 14px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
   transform: translateY(100%);
-  transition: transform 0.4s var(--ease-out);
+  transition: transform 0.4s var(--ease-spring);
+  will-change: transform;
 }
 
 .mobile-cta-bar.show {
   transform: translateY(0);
 }
 
-/* ── Marquee press strip ────────────────────────── */
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
+/* ── Benefit card ───────────────────────────────── */
+.benefit-card {
+  background: #fff;
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  transition:
+    box-shadow var(--duration-base) var(--ease-out),
+    transform var(--duration-base) var(--ease-out);
 }
 
-.marquee-track {
-  display: flex;
-  gap: 3rem;
-  animation: marquee 20s linear infinite;
-  width: max-content;
+.benefit-card:hover {
+  box-shadow: 0 8px 24px rgba(0,0,0,0.09), 0 2px 8px rgba(0,0,0,0.05);
+  transform: translateY(-3px);
 }
 
-.marquee-track:hover {
-  animation-play-state: paused;
+/* ── Chevron scroll indicator ───────────────────── */
+@keyframes bounce-y {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(5px); }
+}
+
+.scroll-chevron {
+  animation: bounce-y 1.8s ease-in-out infinite;
 }

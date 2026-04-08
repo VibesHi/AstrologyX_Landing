@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { APP_STORE_ID, APP_STORE_URL } from '../config';
 
 interface Props {
   title?: string;
@@ -9,14 +10,12 @@ interface Props {
 }
 
 const {
-  title = 'AstrologyX — Your Birth Chart, Decoded by AI',
-  description = 'Hyper-personalized astrology powered by real-time planetary data. See your full birth chart, daily insights, and compatibility analysis. Free on the App Store.',
+  title = 'AstrologyX — Understand Yourself a Little More, Every Day',
+  description = 'Your birth chart, decoded by AI. Personalised daily readings, real-time planetary data, and synastry charts — free on the App Store.',
   ogImage = '/og-image.png',
   canonical,
 } = Astro.props;
 
-const APP_STORE_URL = 'https://apps.apple.com/app/id1449148271';
-const APP_STORE_ID = '1449148271';
 const siteURL = 'https://astrologyx.com';
 const resolvedCanonical = canonical ?? siteURL + Astro.url.pathname;
 ---
@@ -25,42 +24,32 @@ const resolvedCanonical = canonical ?? siteURL + Astro.url.pathname;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
+    <meta name="theme-color" content="#F9F7F4" />
 
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={resolvedCanonical} />
 
     <!-- Open Graph -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={resolvedCanonical} />
-    <meta property="og:title" content={title} />
+    <meta property="og:type"        content="website" />
+    <meta property="og:url"         content={resolvedCanonical} />
+    <meta property="og:title"       content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={siteURL + ogImage} />
-    <meta property="og:image:width" content="1200" />
+    <meta property="og:image"       content={siteURL + ogImage} />
+    <meta property="og:image:width"  content="1200" />
     <meta property="og:image:height" content="630" />
 
     <!-- Twitter / X Card -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title} />
+    <meta name="twitter:card"        content="summary_large_image" />
+    <meta name="twitter:title"       content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={siteURL + ogImage} />
+    <meta name="twitter:image"       content={siteURL + ogImage} />
 
     <!-- Apple Smart App Banner -->
     <meta name="apple-itunes-app" content={`app-id=${APP_STORE_ID}`} />
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-
-    <!-- Font preload (Inter variable, Latin subset) -->
-    <link
-      rel="preload"
-      href="/fonts/inter-latin-variable.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
 
     <slot name="head" />
   </head>

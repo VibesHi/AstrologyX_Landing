@@ -3,53 +3,123 @@ const reviews = [
   {
     quote: "I've tried every astrology app. This is the first one that actually feels like it knows me. The daily reading referenced a transit I'd been feeling all week without knowing why.",
     author: 'Sarah M.',
-    detail: 'App Store review · ★★★★★',
+    detail: 'App Store review',
+    span: 'full',
   },
   {
     quote: "The chart accuracy is unreal. Asked my astrologer about a placement it highlighted — she said most apps get that wrong. AstrologyX nailed it.",
     author: 'James K.',
-    detail: 'App Store review · ★★★★★',
+    detail: 'App Store review',
+    span: 'half',
   },
   {
     quote: "Clean, focused, no noise. I open it every morning. The AI interpretations are the most coherent I've ever read — it doesn't just list positions, it connects them.",
     author: 'Priya L.',
-    detail: 'App Store review · ★★★★★',
+    detail: 'App Store review',
+    span: 'half',
   },
 ];
 ---
-<section id="testimonials" class="bg-black section-pad" aria-label="User testimonials">
+<section
+  id="testimonials"
+  class="section-pad"
+  style="background: #ffffff;"
+  aria-label="User testimonials"
+>
   <div class="max-w-5xl mx-auto px-6">
-    <!-- Section header -->
-    <div class="text-center mb-20 reveal" id="test-header">
-      <p class="text-xs font-semibold tracking-[0.25em] uppercase text-white/30 mb-4">Real People. Real Charts.</p>
+
+    <!-- Header -->
+    <div class="text-center mb-14 reveal" id="test-header">
+      <span class="pill-tag mb-5 inline-flex">Kind words</span>
       <h2
-        class="font-black text-white leading-tight tracking-tight"
-        style="font-size: var(--text-headline);"
+        class="font-black leading-tight tracking-tight mt-4"
+        style="font-size: var(--text-headline); color: #111111;"
       >
-        WHAT USERS SAY
+        From people who use it every day
       </h2>
     </div>
 
-    <!-- Pull quotes -->
-    <div class="space-y-16" id="reviews-list">
-      {reviews.map(({ quote, author, detail }, idx) => (
-        <blockquote
-          id={`review-${idx}`}
-          class="reveal flex flex-col gap-6"
+    <!-- Grid: first quote full-width, two below side-by-side -->
+    <div class="space-y-5" id="reviews-grid">
+      <!-- Full-width first -->
+      <blockquote
+        id="review-0"
+        class="reveal"
+        style="
+          background: #F9F7F4;
+          border-radius: 20px;
+          padding: 2.5rem;
+          position: relative;
+        "
+      >
+        <!-- Large decorative quotation mark -->
+        <span
+          aria-hidden="true"
+          class="absolute top-5 left-7 font-serif"
+          style="font-size: 5rem; line-height: 1; color: #EBEBEB; font-family: var(--font-serif); user-select: none;"
+        >&ldquo;</span>
+
+        <p
+          class="relative font-serif italic"
+          style="
+            font-family: var(--font-serif);
+            font-size: clamp(1.15rem, 0.9rem + 1.2vw, 1.5rem);
+            color: #2A2A2A;
+            line-height: 1.6;
+            max-width: 72ch;
+            padding-top: 1.5rem;
+          "
         >
-          <div class="rule text-white/20"></div>
-          <p
-            class="font-serif italic text-white/80 leading-snug"
-            style={`font-size: var(--text-display); font-family: var(--font-serif); font-size: clamp(1.4rem, 1rem + 2vw, 2rem);`}
+          {reviews[0].quote}
+        </p>
+        <footer class="mt-5 flex items-center gap-3">
+          <cite class="not-italic font-semibold text-sm" style="color: #111111;">{reviews[0].author}</cite>
+          <span style="color: #BEBEBE; font-size: 0.7rem;">·</span>
+          <span style="color: #BEBEBE; font-size: 0.7rem;">{reviews[0].detail}</span>
+          <span style="color: #BEBEBE; font-size: 0.7rem; margin-left: auto;">★★★★★</span>
+        </footer>
+      </blockquote>
+
+      <!-- Two half-width -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        {reviews.slice(1).map(({ quote, author, detail }, i) => (
+          <blockquote
+            id={`review-${i + 1}`}
+            class="reveal"
+            style="
+              background: #F9F7F4;
+              border-radius: 20px;
+              padding: 2rem;
+              position: relative;
+            "
           >
-            &ldquo;{quote}&rdquo;
-          </p>
-          <footer class="flex flex-col gap-1">
-            <cite class="text-sm font-bold text-white not-italic tracking-wide">{author}</cite>
-            <span class="text-xs text-white/30">{detail}</span>
-          </footer>
-        </blockquote>
-      ))}
+            <span
+              aria-hidden="true"
+              class="absolute top-4 left-6 font-serif"
+              style="font-size: 4rem; line-height: 1; color: #EBEBEB; font-family: var(--font-serif); user-select: none;"
+            >&ldquo;</span>
+
+            <p
+              class="relative font-serif italic"
+              style="
+                font-family: var(--font-serif);
+                font-size: clamp(1rem, 0.85rem + 0.8vw, 1.2rem);
+                color: #2A2A2A;
+                line-height: 1.65;
+                padding-top: 1.25rem;
+              "
+            >
+              {quote}
+            </p>
+            <footer class="mt-4 flex items-center gap-3">
+              <cite class="not-italic font-semibold text-sm" style="color: #111111;">{author}</cite>
+              <span style="color: #BEBEBE; font-size: 0.7rem;">·</span>
+              <span style="color: #BEBEBE; font-size: 0.7rem;">{detail}</span>
+              <span style="color: #BEBEBE; font-size: 0.7rem; margin-left: auto;">★★★★★</span>
+            </footer>
+          </blockquote>
+        ))}
+      </div>
     </div>
   </div>
 </section>
@@ -64,10 +134,9 @@ const reviews = [
         }
       });
     },
-    { threshold: 0.12 }
+    { threshold: 0.1 }
   );
-
-  ['test-header', ...Array.from({ length: 3 }, (_, i) => `review-${i}`)].forEach((id) => {
+  ['test-header', 'review-0', 'review-1', 'review-2'].forEach((id) => {
     const el = document.getElementById(id);
     if (el) observer.observe(el);
   });
