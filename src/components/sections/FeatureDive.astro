@@ -1,0 +1,136 @@
+---
+const features = [
+  {
+    eyebrow: 'Precision',
+    headline: 'NASA DATA.\nNO GUESSWORK.',
+    body: 'Every planetary position in AstrologyX is calculated from JPL ephemeris data — the same orbital mechanics used by space agencies. Your Moon sign is accurate to the minute, not rounded to the nearest degree.',
+    stat: { value: '0.001°', label: 'Positional accuracy' },
+    side: 'left',
+  },
+  {
+    eyebrow: 'Intelligence',
+    headline: 'AI THAT\nKNOWS YOU.',
+    body: 'Our language model has been trained on thousands of traditional astrological texts and modern interpretations. It cross-references every aspect in your chart against current transits to surface what\'s actually relevant to your life today.',
+    stat: { value: '500K+', label: 'Interpretations trained' },
+    side: 'right',
+  },
+  {
+    eyebrow: 'Connection',
+    headline: 'UNDERSTAND\nANYONE.',
+    body: 'Synastry analysis maps the planetary connections between two charts. House overlays reveal where someone enters your life story. Composite charts show what a relationship becomes as its own entity.',
+    stat: { value: '144', label: 'Aspect combinations analysed' },
+    side: 'left',
+  },
+];
+---
+<section id="features" class="bg-black section-pad" aria-label="Feature details">
+  <div class="max-w-5xl mx-auto px-6 space-y-32">
+    {features.map(({ eyebrow, headline, body, stat, side }, idx) => (
+      <div
+        id={`feature-${idx}`}
+        class={`flex flex-col gap-12 items-center reveal ${
+          side === 'right' ? 'lg:flex-row-reverse' : 'lg:flex-row'
+        }`}
+      >
+        <!-- Visual block -->
+        <div class="flex-1 flex items-center justify-center min-h-[280px]">
+          <div class="relative w-full max-w-sm aspect-square border border-white/10 rounded-3xl bg-white/[0.02] flex items-center justify-center overflow-hidden">
+            <!-- Background grid -->
+            <svg
+              class="absolute inset-0 w-full h-full opacity-10"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <defs>
+                <pattern id={`grid-${idx}`} width="32" height="32" patternUnits="userSpaceOnUse">
+                  <path d="M 32 0 L 0 0 0 32" fill="none" stroke="white" stroke-width="0.5"/>
+                </pattern>
+              </defs>
+              <rect width="100%" height="100%" fill={`url(#grid-${idx})`}/>
+            </svg>
+
+            <!-- Feature-specific illustration -->
+            <div class="relative z-10 text-center p-8">
+              {idx === 0 && (
+                <svg width="96" height="96" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <circle cx="48" cy="48" r="44" stroke="white" stroke-width="1" opacity="0.2"/>
+                  <circle cx="48" cy="48" r="32" stroke="white" stroke-width="1" opacity="0.3"/>
+                  <circle cx="48" cy="48" r="18" stroke="white" stroke-width="1" opacity="0.4"/>
+                  <circle cx="48" cy="48" r="5" fill="white" opacity="0.9"/>
+                  <circle cx="48" cy="4" r="4" fill="white" opacity="0.8"/>
+                  <circle cx="92" cy="48" r="3" fill="white" opacity="0.6"/>
+                  <circle cx="48" cy="92" r="3.5" fill="white" opacity="0.7"/>
+                  <circle cx="4" cy="48" r="2.5" fill="white" opacity="0.5"/>
+                  <line x1="48" y1="4" x2="92" y2="48" stroke="white" stroke-width="0.5" opacity="0.3"/>
+                  <line x1="48" y1="4" x2="4" y2="48" stroke="white" stroke-width="0.5" opacity="0.2"/>
+                  <line x1="92" y1="48" x2="48" y2="92" stroke="white" stroke-width="0.5" opacity="0.25"/>
+                </svg>
+              )}
+              {idx === 1 && (
+                <div class="space-y-3 text-left">
+                  {[
+                    'Sun in Leo, 5th house',
+                    'Moon square Saturn',
+                    'Venus trine Jupiter',
+                    'Mars conjunct Pluto',
+                    'Mercury sextile Uranus',
+                  ].map((line, i) => (
+                    <div class="flex items-center gap-3" style={`opacity: ${1 - i * 0.15}`}>
+                      <span class="block w-1.5 h-1.5 rounded-full bg-white flex-shrink-0"></span>
+                      <span class="text-white text-xs font-mono">{line}</span>
+                    </div>
+                  ))}
+                </div>
+              )}
+              {idx === 2 && (
+                <svg width="96" height="96" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <circle cx="32" cy="48" r="26" stroke="white" stroke-width="1" opacity="0.4"/>
+                  <circle cx="64" cy="48" r="26" stroke="white" stroke-width="1" opacity="0.4"/>
+                  <path d="M48 26 C42 34 42 62 48 70 C54 62 54 34 48 26Z" fill="white" opacity="0.08"/>
+                  <circle cx="20" cy="48" r="4" fill="white" opacity="0.7"/>
+                  <circle cx="76" cy="48" r="4" fill="white" opacity="0.7"/>
+                  <circle cx="48" cy="48" r="3" fill="white" opacity="0.9"/>
+                  <line x1="20" y1="48" x2="76" y2="48" stroke="white" stroke-width="0.5" opacity="0.3"/>
+                </svg>
+              )}
+            </div>
+
+            <!-- Stat badge -->
+            <div class="absolute bottom-5 right-5 text-right">
+              <span class="block text-2xl font-black text-white leading-none">{stat.value}</span>
+              <span class="block text-[10px] tracking-widest uppercase text-white/30 mt-1">{stat.label}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Copy block -->
+        <div class="flex-1 max-w-md">
+          <p class="text-xs font-semibold tracking-[0.25em] uppercase text-white/30 mb-5">{eyebrow}</p>
+          <h3
+            class="font-black text-white leading-tight tracking-tight mb-6 whitespace-pre-line"
+            style="font-size: var(--text-headline);"
+          >
+            {headline}
+          </h3>
+          <div class="rule text-white mb-6"></div>
+          <p class="text-white/50 leading-relaxed" style="font-size: var(--text-body-lg);">{body}</p>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
+
+<script>
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.12 }
+  );
+  document.querySelectorAll('[id^="feature-"]').forEach((el) => observer.observe(el));
+</script>

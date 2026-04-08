@@ -1,0 +1,74 @@
+---
+const reviews = [
+  {
+    quote: "I've tried every astrology app. This is the first one that actually feels like it knows me. The daily reading referenced a transit I'd been feeling all week without knowing why.",
+    author: 'Sarah M.',
+    detail: 'App Store review · ★★★★★',
+  },
+  {
+    quote: "The chart accuracy is unreal. Asked my astrologer about a placement it highlighted — she said most apps get that wrong. AstrologyX nailed it.",
+    author: 'James K.',
+    detail: 'App Store review · ★★★★★',
+  },
+  {
+    quote: "Clean, focused, no noise. I open it every morning. The AI interpretations are the most coherent I've ever read — it doesn't just list positions, it connects them.",
+    author: 'Priya L.',
+    detail: 'App Store review · ★★★★★',
+  },
+];
+---
+<section id="testimonials" class="bg-black section-pad" aria-label="User testimonials">
+  <div class="max-w-5xl mx-auto px-6">
+    <!-- Section header -->
+    <div class="text-center mb-20 reveal" id="test-header">
+      <p class="text-xs font-semibold tracking-[0.25em] uppercase text-white/30 mb-4">Real People. Real Charts.</p>
+      <h2
+        class="font-black text-white leading-tight tracking-tight"
+        style="font-size: var(--text-headline);"
+      >
+        WHAT USERS SAY
+      </h2>
+    </div>
+
+    <!-- Pull quotes -->
+    <div class="space-y-16" id="reviews-list">
+      {reviews.map(({ quote, author, detail }, idx) => (
+        <blockquote
+          id={`review-${idx}`}
+          class="reveal flex flex-col gap-6"
+        >
+          <div class="rule text-white/20"></div>
+          <p
+            class="font-serif italic text-white/80 leading-snug"
+            style={`font-size: var(--text-display); font-family: var(--font-serif); font-size: clamp(1.4rem, 1rem + 2vw, 2rem);`}
+          >
+            &ldquo;{quote}&rdquo;
+          </p>
+          <footer class="flex flex-col gap-1">
+            <cite class="text-sm font-bold text-white not-italic tracking-wide">{author}</cite>
+            <span class="text-xs text-white/30">{detail}</span>
+          </footer>
+        </blockquote>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.12 }
+  );
+
+  ['test-header', ...Array.from({ length: 3 }, (_, i) => `review-${i}`)].forEach((id) => {
+    const el = document.getElementById(id);
+    if (el) observer.observe(el);
+  });
+</script>

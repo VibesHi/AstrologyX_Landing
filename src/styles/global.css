@@ -1,0 +1,252 @@
+@import "tailwindcss";
+@import "@fontsource-variable/inter/index.css";
+@import "@fontsource/playfair-display/latin-400.css";
+@import "@fontsource/playfair-display/latin-400-italic.css";
+
+@theme {
+  /* Color primitives */
+  --color-black: #000000;
+  --color-white: #ffffff;
+  --color-gray-50: #fafafa;
+  --color-gray-100: #f5f5f5;
+  --color-gray-200: #e5e5e5;
+  --color-gray-300: #d4d4d4;
+  --color-gray-400: #a3a3a3;
+  --color-gray-500: #737373;
+  --color-gray-600: #525252;
+  --color-gray-700: #404040;
+  --color-gray-800: #262626;
+  --color-gray-900: #171717;
+  --color-gray-950: #0a0a0a;
+
+  /* Semantic colors */
+  --color-bg-primary: #ffffff;
+  --color-bg-inverse: #000000;
+  --color-text-primary: #000000;
+  --color-text-inverse: #ffffff;
+  --color-text-muted: #737373;
+  --color-border: #e5e5e5;
+  --color-border-inverse: #262626;
+
+  /* Typography */
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Playfair Display", ui-serif, Georgia, serif;
+  --font-mono: ui-monospace, "Cascadia Code", "Source Code Pro", monospace;
+
+  /* Fluid type scale */
+  --text-hero: clamp(2.5rem, 1.5rem + 5vw, 6rem);
+  --text-display: clamp(2rem, 1rem + 3vw, 4rem);
+  --text-headline: clamp(1.5rem, 1rem + 2vw, 2.25rem);
+  --text-subhead: clamp(1.125rem, 0.9rem + 1vw, 1.5rem);
+  --text-body-lg: clamp(1.125rem, 1rem + 0.5vw, 1.25rem);
+  --text-body: clamp(1rem, 0.9rem + 0.4vw, 1.125rem);
+  --text-caption: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+
+  /* Spacing scale (4px base) */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-24: 6rem;
+  --space-32: 8rem;
+  --space-48: 12rem;
+  --space-element: 1rem;
+  --space-component: 2rem;
+  --space-section: 6rem;
+
+  /* Animation */
+  --ease-out: cubic-bezier(0.0, 0.0, 0.2, 1.0);
+  --ease-in-out: cubic-bezier(0.4, 0.0, 0.2, 1.0);
+  --duration-fast: 0.2s;
+  --duration-base: 0.35s;
+  --duration-slow: 0.6s;
+}
+
+/* ── Base reset ─────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Reduced motion ─────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ── Fluid section spacing ──────────────────────── */
+.section-pad {
+  padding-top: var(--space-section);
+  padding-bottom: var(--space-section);
+}
+
+/* ── Reveal animations ──────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity var(--duration-slow) var(--ease-out),
+              transform var(--duration-slow) var(--ease-out);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-stagger > * {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity var(--duration-slow) var(--ease-out),
+              transform var(--duration-slow) var(--ease-out);
+}
+
+.reveal-stagger > *.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-stagger > *:nth-child(1) { transition-delay: 0ms; }
+.reveal-stagger > *:nth-child(2) { transition-delay: 100ms; }
+.reveal-stagger > *:nth-child(3) { transition-delay: 200ms; }
+
+/* ── Pulsing dot ────────────────────────────────── */
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+.pulse-dot {
+  animation: pulse-dot 2.4s ease-in-out infinite;
+}
+
+/* ── Scroll fade-in for hero ────────────────────── */
+@keyframes hero-in {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.hero-in {
+  animation: hero-in var(--duration-slow) var(--ease-out) both;
+}
+
+.hero-in-delay-1 { animation-delay: 0.15s; }
+.hero-in-delay-2 { animation-delay: 0.3s; }
+.hero-in-delay-3 { animation-delay: 0.45s; }
+
+/* ── Phone mockup ───────────────────────────────── */
+.phone-frame {
+  position: relative;
+  width: 240px;
+  height: 490px;
+  border-radius: 36px;
+  border: 2px solid #262626;
+  background: #0a0a0a;
+  box-shadow:
+    0 0 0 1px #000,
+    inset 0 0 0 1px #333,
+    0 32px 64px rgba(0,0,0,0.4);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.phone-frame::before {
+  content: '';
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 6px;
+  border-radius: 3px;
+  background: #222;
+  z-index: 10;
+}
+
+.phone-screen {
+  position: absolute;
+  inset: 0;
+  background: #000;
+  display: flex;
+  flex-direction: column;
+  padding: 32px 16px 20px;
+  overflow: hidden;
+}
+
+/* ── Horizontal rule ────────────────────────────── */
+.rule {
+  width: 40px;
+  height: 1px;
+  background: currentColor;
+  flex-shrink: 0;
+}
+
+/* ── App Store badge ────────────────────────────── */
+.badge-appstore {
+  display: inline-block;
+  transition: opacity var(--duration-fast) var(--ease-out),
+              transform var(--duration-fast) var(--ease-out);
+}
+.badge-appstore:hover {
+  opacity: 0.8;
+  transform: scale(1.03);
+}
+
+/* ── Sticky mobile CTA bar ──────────────────────── */
+.mobile-cta-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background: #000;
+  border-top: 1px solid #1a1a1a;
+  padding: 10px 20px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  transform: translateY(100%);
+  transition: transform 0.4s var(--ease-out);
+}
+
+.mobile-cta-bar.show {
+  transform: translateY(0);
+}
+
+/* ── Marquee press strip ────────────────────────── */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  display: flex;
+  gap: 3rem;
+  animation: marquee 20s linear infinite;
+  width: max-content;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}

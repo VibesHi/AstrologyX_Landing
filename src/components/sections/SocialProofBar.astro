@@ -1,0 +1,73 @@
+---
+const metrics = [
+  { value: '10K+', label: 'Downloads' },
+  { value: '4.9★', label: 'App Store Rating' },
+  { value: '50+', label: 'Countries' },
+  { value: 'NASA', label: 'Planetary Data' },
+];
+
+const press = [
+  'TechCrunch',
+  'Product Hunt',
+  'Vogue',
+  'Wired',
+  'Forbes',
+];
+---
+<section
+  id="social-proof"
+  class="bg-white border-y border-gray-200 overflow-hidden py-10"
+  aria-label="Social proof"
+>
+  <div class="max-w-6xl mx-auto px-6">
+    <!-- Key metrics row -->
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-8 mb-10 text-center reveal-stagger" id="metrics-row">
+      {metrics.map(({ value, label }) => (
+        <div class="flex flex-col gap-1">
+          <span class="font-black text-3xl tracking-tight text-black leading-none">{value}</span>
+          <span class="text-xs tracking-widest uppercase text-gray-400">{label}</span>
+        </div>
+      ))}
+    </div>
+
+    <!-- Divider -->
+    <div class="border-t border-gray-100 mb-8"></div>
+
+    <!-- Press marquee -->
+    <div class="relative overflow-hidden" aria-label="As featured in">
+      <p class="text-[10px] tracking-[0.25em] uppercase text-gray-300 text-center mb-5">As featured in</p>
+      <div class="overflow-hidden">
+        <div class="marquee-track">
+          {[...press, ...press].map((name, i) => (
+            <span
+              key={i}
+              class="text-sm font-bold tracking-wider text-gray-300 uppercase whitespace-nowrap"
+            >
+              {name}
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const metricsRow = document.getElementById('metrics-row');
+  if (metricsRow) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.querySelectorAll(':scope > *').forEach((child, i) => {
+              setTimeout(() => child.classList.add('visible'), i * 100);
+            });
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+    observer.observe(metricsRow);
+  }
+</script>

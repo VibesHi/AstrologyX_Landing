@@ -1,0 +1,115 @@
+---
+const APP_STORE_URL = 'https://apps.apple.com/app/id1449148271';
+---
+<section
+  id="hero"
+  class="relative min-h-screen bg-black flex flex-col items-center justify-center text-white overflow-hidden px-6"
+  aria-label="Hero"
+>
+  <!-- Background constellation of static dots -->
+  <div aria-hidden="true" class="absolute inset-0 pointer-events-none" id="star-field"></div>
+
+  <!-- Thin horizontal rule -->
+  <div
+    aria-hidden="true"
+    class="hero-in absolute top-1/2 left-0 right-0 h-px bg-white/5"
+    style="animation-delay: 0.7s"
+  ></div>
+
+  <!-- Main content -->
+  <div class="relative z-10 text-center max-w-4xl mx-auto flex flex-col items-center gap-8">
+
+    <!-- Eyebrow label -->
+    <p
+      class="hero-in text-xs font-semibold tracking-[0.25em] uppercase text-white/40"
+    >
+      Available on iOS
+    </p>
+
+    <!-- Wordmark -->
+    <h1
+      class="hero-in hero-in-delay-1 font-black leading-[0.92] tracking-tighter text-white"
+      style="font-size: var(--text-hero); font-family: var(--font-sans);"
+    >
+      ASTROLOGY<span class="text-white/30">X</span>
+    </h1>
+
+    <!-- Tagline -->
+    <p
+      class="hero-in hero-in-delay-2 text-white/60 max-w-md leading-relaxed"
+      style="font-size: var(--text-subhead);"
+    >
+      Your birth chart, decoded by AI.<br />
+      <span class="text-white/30">Real planetary data. Real insights.</span>
+    </p>
+
+    <!-- Pulsing divider dot -->
+    <div aria-hidden="true" class="hero-in hero-in-delay-2 flex items-center gap-3">
+      <span class="block w-8 h-px bg-white/20"></span>
+      <span class="pulse-dot block w-1.5 h-1.5 rounded-full bg-white/50"></span>
+      <span class="block w-8 h-px bg-white/20"></span>
+    </div>
+
+    <!-- App Store CTA -->
+    <div class="hero-in hero-in-delay-3 flex flex-col items-center gap-4">
+      <a
+        href={APP_STORE_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="badge-appstore"
+        aria-label="Download AstrologyX on the App Store"
+      >
+        <img
+          src="/img/appstore.png"
+          alt="Download on the App Store"
+          width="160"
+          height="53"
+          fetchpriority="high"
+          style="height: 53px; width: auto;"
+        />
+      </a>
+      <!-- Rating badge -->
+      <div class="flex items-center gap-2 text-white/40 text-xs">
+        <span class="flex gap-0.5 text-white/60" aria-label="4.9 stars">
+          ★★★★★
+        </span>
+        <span>4.9 on the App Store · 10K+ downloads</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div
+    class="hero-in absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+    aria-hidden="true"
+    style="animation-delay: 1s"
+  >
+    <span class="text-[10px] tracking-[0.2em] uppercase text-white/20">Scroll</span>
+    <span class="block w-px h-8 bg-gradient-to-b from-white/20 to-transparent"></span>
+  </div>
+</section>
+
+<script>
+  // Minimal star field — pure CSS points, zero images
+  const field = document.getElementById('star-field');
+  if (field) {
+    const count = 80;
+    const fragment = document.createDocumentFragment();
+    for (let i = 0; i < count; i++) {
+      const dot = document.createElement('div');
+      const size = Math.random() < 0.7 ? 1 : 2;
+      const opacity = (0.05 + Math.random() * 0.2).toFixed(2);
+      dot.style.cssText = `
+        position: absolute;
+        width: ${size}px; height: ${size}px;
+        border-radius: 50%;
+        background: white;
+        opacity: ${opacity};
+        top: ${(Math.random() * 100).toFixed(1)}%;
+        left: ${(Math.random() * 100).toFixed(1)}%;
+      `;
+      fragment.appendChild(dot);
+    }
+    field.appendChild(fragment);
+  }
+</script>
