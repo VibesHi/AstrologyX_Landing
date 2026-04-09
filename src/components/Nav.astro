@@ -3,34 +3,40 @@ import { APP_STORE_URL } from '../config';
 ---
 <header
   id="site-nav"
-  class="fixed top-0 left-0 right-0 z-40 bg-[#F9F7F4]"
-  style="border-bottom: 1px solid #EBEBEB;"
+  class="fixed top-0 left-0 right-0 z-40 flex justify-between items-center px-6 md:px-12 py-6 max-w-full bg-[#131313]/80 backdrop-blur-xl border-b border-white/10"
 >
-  <div class="max-w-5xl mx-auto px-6 h-15 flex items-center justify-between" style="height: 60px;">
-    <a
-      href="/"
-      class="font-black tracking-tight text-base leading-none select-none"
-      style="color: #111111;"
-    >
-      AstrologyX
+  <a
+    href="/"
+    class="text-xl font-black tracking-tighter text-white uppercase select-none"
+  >
+    AstrologyX
+  </a>
+
+  <nav class="hidden md:flex gap-12 items-center" aria-label="Section shortcuts">
+    <a class="text-white font-bold border-b-2 border-white pb-1 text-sm uppercase tracking-wide" href="#benefits">
+      Ephemeris
     </a>
     <a
-      href={APP_STORE_URL}
-      target="_blank"
-      rel="noopener noreferrer"
-      class="text-xs font-semibold tracking-widest uppercase transition-all duration-200"
-      style="
-        color: #111111;
-        border: 1px solid #D8D8D8;
-        border-radius: 100px;
-        padding: 0.45rem 1.1rem;
-      "
-      onmouseover="this.style.borderColor='#111111'"
-      onmouseout="this.style.borderColor='#D8D8D8'"
+      class="text-[#5E5E5E] hover:text-white transition-colors text-sm uppercase tracking-wide"
+      href="#app-showcase"
     >
-      Download
+      Transits
     </a>
-  </div>
+    <a
+      class="text-[#5E5E5E] hover:text-white transition-colors text-sm uppercase tracking-wide"
+      href="#testimonials"
+    >
+      Void
+    </a>
+  </nav>
+
+  <a
+    href={APP_STORE_URL}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="bg-white text-black px-6 py-2 text-sm font-bold uppercase tracking-wide hover:bg-[#353535] hover:text-white transition-all duration-300"
+  >
+    Download
+  </a>
 </header>
-<!-- Spacer so content doesn't sit under fixed nav -->
-<div style="height: 60px;" aria-hidden="true"></div>
+<div class="h-[88px] shrink-0" aria-hidden="true"></div>

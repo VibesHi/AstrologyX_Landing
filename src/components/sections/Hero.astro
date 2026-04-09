@@ -4,105 +4,55 @@ import { APP_STORE_URL } from '../../config';
 <section
   id="hero"
   class="relative overflow-hidden"
-  style="background: #F9F7F4; min-height: calc(100vh - 60px);"
+  style="background: #131313; min-height: calc(100vh - 88px);"
   aria-label="Hero"
 >
-  <!-- Faint natal wheel watermark -->
   <div
-    aria-hidden="true"
-    class="hero-in absolute inset-0 flex items-center justify-center pointer-events-none"
-    style="animation-delay: 0.05s;"
+    class="relative z-10 flex flex-col items-start justify-center px-6 md:px-12 pt-16 pb-24 md:pt-24 md:pb-32"
+    style="min-height: calc(100vh - 88px);"
   >
-    <svg
-      viewBox="0 0 600 600"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      style="width: min(90vw, 600px); opacity: 0.055;"
+    <h1
+      class="hero-in font-black leading-[0.85] tracking-tighter uppercase text-white mb-8 max-w-[min(100%,20ch)]"
+      style="font-size: var(--text-hero-mega);"
     >
-      <!-- Concentric rings -->
-      <circle cx="300" cy="300" r="280" stroke="#111" stroke-width="1"/>
-      <circle cx="300" cy="300" r="240" stroke="#111" stroke-width="0.5"/>
-      <circle cx="300" cy="300" r="180" stroke="#111" stroke-width="0.5"/>
-      <circle cx="300" cy="300" r="120" stroke="#111" stroke-width="0.5"/>
-      <circle cx="300" cy="300" r="60"  stroke="#111" stroke-width="0.5"/>
-      <!-- 12 house spokes -->
-      {Array.from({ length: 12 }).map((_, i) => {
-        const angle = (i * 30 - 90) * Math.PI / 180;
-        const x1 = (300 + 60 * Math.cos(angle)).toFixed(2);
-        const y1 = (300 + 60 * Math.sin(angle)).toFixed(2);
-        const x2 = (300 + 280 * Math.cos(angle)).toFixed(2);
-        const y2 = (300 + 280 * Math.sin(angle)).toFixed(2);
-        return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#111" stroke-width="0.5"/>`;
-      }).join('')}
-      <!-- Planet dots -->
-      <circle cx="300" cy="20"  r="5" fill="#111"/>
-      <circle cx="558" cy="180" r="4" fill="#111"/>
-      <circle cx="490" cy="490" r="4" fill="#111"/>
-      <circle cx="110" cy="430" r="3" fill="#111"/>
-      <circle cx="42"  cy="180" r="3" fill="#111"/>
-      <circle cx="200" cy="42"  r="3" fill="#111"/>
-      <!-- Aspect lines -->
-      <line x1="300" y1="20"  x2="490" y2="490" stroke="#111" stroke-width="0.5"/>
-      <line x1="300" y1="20"  x2="110" y2="430" stroke="#111" stroke-width="0.5"/>
-      <line x1="558" y1="180" x2="42"  y2="180" stroke="#111" stroke-width="0.3"/>
-    </svg>
-  </div>
+      AstrologyX
+    </h1>
 
-  <!-- Content -->
-  <div
-    class="relative z-10 flex flex-col items-center justify-center text-center px-6 py-24"
-    style="min-height: calc(100vh - 60px);"
-  >
-    <div class="flex flex-col items-center gap-7 max-w-3xl mx-auto">
+    <p
+      class="hero-in hero-in-delay-1 text-2xl md:text-4xl font-light max-w-2xl mb-12"
+      style="color: #c6c6c6; line-height: 1.25;"
+    >
+      Your birth chart, decoded by AI. Precise. Clear. Built for daily use.
+    </p>
 
-      <!-- Eyebrow -->
-      <span class="hero-in pill-tag" style="animation-delay: 0.08s;">
-        iOS App
-      </span>
-
-      <!-- Wordmark -->
-      <h1
-        class="hero-in hero-in-delay-1 font-black leading-[0.9] tracking-tighter"
-        style="font-size: var(--text-hero); color: #111111; font-family: var(--font-sans);"
+    <div class="hero-in hero-in-delay-2 flex flex-wrap items-center gap-6">
+      <a
+        href={APP_STORE_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="badge-appstore"
+        aria-label="Download AstrologyX on the App Store"
       >
-        AstrologyX
-      </h1>
-
-      <!-- Tagline -->
-      <p
-        class="hero-in hero-in-delay-2 leading-relaxed"
-        style="font-size: var(--text-subhead); color: #8A8A8A; max-width: 36ch;"
+        <img
+          src="/img/appstore.png"
+          alt="Download on the App Store"
+          width="180"
+          height="60"
+          fetchpriority="high"
+          class="h-14 w-auto rounded-xl"
+        />
+      </a>
+      <div
+        class="hidden sm:flex items-center gap-4 border-l border-white/20 pl-6"
+        style="font-size: 0.625rem; letter-spacing: 0.12em; text-transform: uppercase; color: #919191;"
       >
-        Understand yourself a little more,<br />every day.
-      </p>
-
-      <!-- App Store badge -->
-      <div class="hero-in hero-in-delay-3 flex flex-col items-center gap-3 mt-2">
-        <a
-          href={APP_STORE_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="badge-appstore"
-          aria-label="Download AstrologyX on the App Store"
-        >
-          <img
-            src="/img/appstore.png"
-            alt="Download on the App Store"
-            width="156"
-            height="52"
-            fetchpriority="high"
-            style="height: 52px; width: auto;"
-          />
-        </a>
-        <span style="font-size: 0.7rem; color: #BEBEBE; letter-spacing: 0.05em;">
-          Free · 4.9 ★ · iOS
-        </span>
+        <span class="font-mono">iOS</span>
+        <span class="font-mono text-white">App Store</span>
       </div>
     </div>
 
-    <!-- Scroll chevron -->
     <div
-      class="hero-in hero-in-delay-4 absolute bottom-10 left-1/2 -translate-x-1/2 scroll-chevron"
+      class="hero-in hero-in-delay-3 absolute bottom-10 left-1/2 -translate-x-1/2 md:left-12 md:translate-x-0 scroll-chevron"
       aria-hidden="true"
     >
       <svg
@@ -111,9 +61,9 @@ import { APP_STORE_URL } from '../../config';
         viewBox="0 0 20 12"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        style="opacity: 0.25;"
+        style="opacity: 0.35;"
       >
-        <path d="M1 1L10 10L19 1" stroke="#111111" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M1 1L10 10L19 1" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
     </div>
   </div>

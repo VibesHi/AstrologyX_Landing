@@ -1,75 +1,53 @@
 ---
 const benefits = [
   {
-    icon: `<svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <circle cx="14" cy="14" r="9" stroke="#111111" stroke-width="1.5"/>
-      <circle cx="14" cy="14" r="3" stroke="#111111" stroke-width="1.5"/>
-      <line x1="14" y1="2" x2="14" y2="6"  stroke="#111111" stroke-width="1.5" stroke-linecap="round"/>
-      <line x1="14" y1="22" x2="14" y2="26" stroke="#111111" stroke-width="1.5" stroke-linecap="round"/>
-      <line x1="2"  y1="14" x2="6"  y2="14" stroke="#111111" stroke-width="1.5" stroke-linecap="round"/>
-      <line x1="22" y1="14" x2="26" y2="14" stroke="#111111" stroke-width="1.5" stroke-linecap="round"/>
+    icon: `<svg width="40" height="40" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M14 2L16.5 9.5L24 12L16.5 14.5L14 22L11.5 14.5L4 12L11.5 9.5L14 2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+      <circle cx="14" cy="12" r="2" fill="currentColor"/>
     </svg>`,
-    headline: 'Your full chart',
-    body: 'Every planet, every house, every aspect — calculated from your exact birth time and location.',
+    headline: 'Algorithmic insights',
+    body: 'Personalised readings from your chart — not one-size horoscopes for every sign. The app focuses on what matters for your placements and transits.',
   },
   {
-    icon: `<svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <rect x="3" y="7" width="22" height="16" rx="2" stroke="#111111" stroke-width="1.5"/>
-      <line x1="3" y1="12" x2="25" y2="12" stroke="#111111" stroke-width="1.5"/>
-      <line x1="10" y1="3" x2="10" y2="9"  stroke="#111111" stroke-width="1.5" stroke-linecap="round"/>
-      <line x1="18" y1="3" x2="18" y2="9"  stroke="#111111" stroke-width="1.5" stroke-linecap="round"/>
-      <rect x="8"  y="16" width="3" height="3" rx="0.5" fill="#111111" opacity="0.5"/>
-      <rect x="17" y="16" width="3" height="3" rx="0.5" fill="#111111" opacity="0.25"/>
+    icon: `<svg width="40" height="40" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M4 20V8h4v12H4zm8-6V4h4v10h-4zm8 4v-8h4v8h-4z" fill="currentColor" opacity="0.9"/>
     </svg>`,
-    headline: 'One daily reading',
-    body: 'One precise, AI-crafted insight per day. Relevant to your chart and attuned to current transits.',
+    headline: 'Real-time transits',
+    body: 'Track what is active in your chart over time so daily context stays aligned with your life — not a static snapshot.',
   },
   {
-    icon: `<svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <circle cx="10" cy="12" r="5"  stroke="#111111" stroke-width="1.5"/>
-      <circle cx="18" cy="12" r="5"  stroke="#111111" stroke-width="1.5"/>
-      <path d="M3 24c0-3.5 3.1-6 7-6h8c3.9 0 7 2.5 7 6" stroke="#111111" stroke-width="1.5" stroke-linecap="round"/>
+    icon: `<svg width="40" height="40" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle cx="10" cy="14" r="5" stroke="currentColor" stroke-width="1.5"/>
+      <circle cx="18" cy="14" r="5" stroke="currentColor" stroke-width="1.5"/>
+      <path d="M3 22c0-3 2.6-5.5 7-5.5h8c4.4 0 7 2.5 7 5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
     </svg>`,
-    headline: 'Compare with anyone',
-    body: 'Synastry charts show how your planets interact with a partner, friend, or colleague.',
+    headline: 'Synced compatibility',
+    body: 'Compare charts with partners or colleagues. Synastry and overlays that show how two charts meet — clearly and calmly.',
   },
 ];
 ---
 <section
   id="benefits"
-  class="section-pad"
-  style="background: #ffffff;"
+  class="section-pad border-t border-white/10"
+  style="background: #131313;"
   aria-label="Core benefits"
 >
-  <div class="max-w-5xl mx-auto px-6">
-
-    <!-- Header -->
-    <div class="text-center mb-14 reveal" id="benefits-header">
-      <span class="pill-tag mb-5 inline-flex">What you get</span>
-      <h2
-        class="font-black leading-tight tracking-tight mt-4"
-        style="font-size: var(--text-headline); color: #111111;"
-      >
-        Made to feel right
-      </h2>
-    </div>
-
-    <!-- Cards -->
+  <div class="max-w-6xl mx-auto px-6 md:px-12">
     <div
-      class="grid grid-cols-1 md:grid-cols-3 gap-6 reveal-stagger"
+      class="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-12 reveal-stagger"
       id="benefits-grid"
     >
       {benefits.map(({ icon, headline, body }) => (
-        <article class="benefit-card flex flex-col gap-5">
-          <div set:html={icon} />
+        <article class="benefit-card benefit-card--inverse flex flex-col gap-6">
+          <div class="text-white" set:html={icon} />
           <div>
             <h3
-              class="font-bold mb-2"
-              style="font-size: var(--text-subhead); color: #111111; line-height: 1.25;"
+              class="text-2xl font-bold uppercase mb-3 tracking-tight"
+              style="color: #ffffff;"
             >
               {headline}
             </h3>
-            <p style="font-size: var(--text-body); color: #8A8A8A; line-height: 1.65;">
+            <p style="font-size: var(--text-body); color: #c6c6c6; line-height: 1.65;">
               {body}
             </p>
           </div>
@@ -85,9 +63,7 @@ const benefits = [
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
         const el = entry.target;
-        if (el.classList.contains('reveal')) {
-          el.classList.add('visible');
-        } else if (el.classList.contains('reveal-stagger')) {
+        if (el.classList.contains('reveal-stagger')) {
           el.querySelectorAll(':scope > *').forEach((child, i) => {
             setTimeout(() => child.classList.add('visible'), i * 100);
           });
@@ -97,8 +73,6 @@ const benefits = [
     },
     { threshold: 0.15 }
   );
-  ['benefits-header', 'benefits-grid'].forEach((id) => {
-    const el = document.getElementById(id);
-    if (el) observer.observe(el);
-  });
+  const grid = document.getElementById('benefits-grid');
+  if (grid) observer.observe(grid);
 </script>

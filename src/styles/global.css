@@ -4,33 +4,37 @@
 @import "@fontsource/playfair-display/latin-400-italic.css";
 
 @theme {
-  /* Color primitives */
-  --color-black: #000000;
-  --color-white: #ffffff;
-  --color-cream: #F9F7F4;
-  --color-cream-dark: #F1EEE9;
-  --color-ink: #111111;
-  --color-ink-soft: #2A2A2A;
-  --color-stone: #8A8A8A;
-  --color-stone-light: #BEBEBE;
-  --color-border-light: #EBEBEB;
-  --color-border-medium: #D8D8D8;
+  /* Dark editorial shell (#131313) */
+  --color-bg-page: #131313;
+  --color-bg-surface: #1b1b1b;
+  --color-bg-surface-low: #1f1f1f;
+  --color-bg-surface-lowest: #0e0e0e;
+  --color-bg-surface-high: #2a2a2a;
+  --color-bg-surface-highest: #353535;
+  --color-bg-raised: #1f1f1f;
+  --color-bg-inverse: #000000;
+  --color-bg-inverse-elevated: #0a0a0a;
 
-  /* Semantic colors */
-  --color-bg-page: #F9F7F4;
-  --color-bg-surface: #ffffff;
-  --color-bg-raised: #ffffff;
-  --color-text-primary: #111111;
-  --color-text-secondary: #8A8A8A;
-  --color-text-muted: #BEBEBE;
-  --color-border: #EBEBEB;
+  --color-text-primary: #e2e2e2;
+  --color-text-secondary: #c6c6c6;
+  --color-text-muted: #919191;
+  --color-text-dim: #5e5e5e;
+  --color-text-on-inverse: #ffffff;
+  --color-text-on-inverse-muted: #a3a3a3;
+  --color-border: rgba(255, 255, 255, 0.1);
+  --color-border-on-inverse: rgba(255, 255, 255, 0.12);
+  --color-outline-variant: #474747;
 
-  /* Typography */
+  /* Light interrupt (showcase / CTA bands) */
+  --color-bg-light: #ffffff;
+  --color-text-on-light: #000000;
+  --color-text-on-light-muted: #525252;
+
   --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Playfair Display", ui-serif, Georgia, serif;
 
-  /* Fluid type scale */
   --text-hero: clamp(2.75rem, 1.5rem + 5.5vw, 6.5rem);
+  --text-hero-mega: clamp(4rem, 12vw, 10rem);
   --text-display: clamp(2rem, 1rem + 3vw, 4rem);
   --text-headline: clamp(1.5rem, 1rem + 2vw, 2.25rem);
   --text-subhead: clamp(1.125rem, 0.9rem + 1vw, 1.5rem);
@@ -38,18 +42,18 @@
   --text-body: clamp(1rem, 0.9rem + 0.4vw, 1.125rem);
   --text-caption: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
 
-  /* Spacing */
   --space-section: 7rem;
   --space-component: 2rem;
   --space-element: 1rem;
 
-  /* Animation */
   --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-out: cubic-bezier(0.0, 0.0, 0.2, 1.0);
   --ease-in-out: cubic-bezier(0.4, 0.0, 0.2, 1.0);
   --duration-fast: 0.2s;
   --duration-base: 0.4s;
   --duration-slow: 0.7s;
+
+  --radius-sharp: 0px;
 }
 
 /* ── Base reset ─────────────────────────────────── */
@@ -69,9 +73,9 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
-/* ── Reduced motion ─────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
@@ -81,10 +85,70 @@ body {
   }
 }
 
-/* ── Section spacing ────────────────────────────── */
 .section-pad {
   padding-top: var(--space-section);
   padding-bottom: var(--space-section);
+}
+
+/* ── Scroll progress (right edge) ───────────────── */
+.scroll-progress-line {
+  position: fixed;
+  right: 2rem;
+  top: 0;
+  width: 2px;
+  height: 100vh;
+  z-index: 100;
+  pointer-events: none;
+}
+
+.scroll-progress-line__track {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.scroll-progress-line__fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #ffffff;
+  transform-origin: top center;
+  transform: scaleY(0);
+}
+
+@supports (animation-timeline: scroll()) {
+  .scroll-progress-line__fill {
+    animation: scroll-progress-grow linear forwards;
+    animation-timeline: scroll(root);
+    animation-range: 0 100%;
+  }
+}
+
+@keyframes scroll-progress-grow {
+  from { transform: scaleY(0); }
+  to { transform: scaleY(1); }
+}
+
+@supports not (animation-timeline: scroll()) {
+  .scroll-progress-line__fill {
+    transform: scaleY(0.3);
+    opacity: 0.9;
+  }
+}
+
+@media (max-width: 767px) {
+  .scroll-progress-line {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-progress-line__fill {
+    animation: none !important;
+    transform: scaleY(0) !important;
+  }
 }
 
 /* ── Scroll reveal ──────────────────────────────── */
@@ -123,7 +187,6 @@ body {
 .reveal-stagger > *:nth-child(5) { transition-delay: 320ms; }
 .reveal-stagger > *:nth-child(6) { transition-delay: 400ms; }
 
-/* ── Hero entry animations ──────────────────────── */
 @keyframes hero-in {
   from { opacity: 0; transform: translateY(14px); }
   to   { opacity: 1; transform: translateY(0); }
@@ -138,7 +201,6 @@ body {
 .hero-in-delay-3 { animation-delay: 0.38s; }
 .hero-in-delay-4 { animation-delay: 0.52s; }
 
-/* ── Fade line (scaleX reveal) ──────────────────── */
 @keyframes line-draw {
   from { transform: scaleX(0); }
   to   { transform: scaleX(1); }
@@ -149,22 +211,26 @@ body {
   animation: line-draw 0.8s var(--ease-spring) both;
 }
 
-/* ── Pill tag ───────────────────────────────────── */
 .pill-tag {
   display: inline-flex;
   align-items: center;
   padding: 0.25rem 0.75rem;
   border-radius: 100px;
-  border: 1px solid var(--color-border-light);
-  background: var(--color-bg-surface);
+  border: 1px solid var(--color-outline-variant);
+  background: transparent;
   font-size: 0.6875rem;
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--color-stone);
+  color: var(--color-text-muted);
 }
 
-/* ── Phone mockup ───────────────────────────────── */
+.pill-tag--on-dark {
+  border-color: rgba(255, 255, 255, 0.22);
+  background: transparent;
+  color: rgba(255, 255, 255, 0.55);
+}
+
 .phone-frame {
   position: relative;
   width: 260px;
@@ -203,7 +269,6 @@ body {
   overflow: hidden;
 }
 
-/* ── App Store badge hover ──────────────────────── */
 .badge-appstore {
   display: inline-block;
   transition:
@@ -215,15 +280,14 @@ body {
   transform: scale(1.02);
 }
 
-/* ── Sticky mobile CTA bar ──────────────────────── */
 .mobile-cta-bar {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
   z-index: 50;
-  background: #fff;
-  border-top: 1px solid var(--color-border-light);
+  background: var(--color-bg-surface);
+  border-top: 1px solid var(--color-border);
   padding: 10px 20px 14px;
   display: flex;
   align-items: center;
@@ -238,23 +302,30 @@ body {
   transform: translateY(0);
 }
 
-/* ── Benefit card ───────────────────────────────── */
 .benefit-card {
-  background: #fff;
-  border-radius: 20px;
-  padding: 2rem;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
-  transition:
-    box-shadow var(--duration-base) var(--ease-out),
-    transform var(--duration-base) var(--ease-out);
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
+  box-shadow: none;
 }
 
 .benefit-card:hover {
-  box-shadow: 0 8px 24px rgba(0,0,0,0.09), 0 2px 8px rgba(0,0,0,0.05);
-  transform: translateY(-3px);
+  box-shadow: none;
+  transform: none;
 }
 
-/* ── Chevron scroll indicator ───────────────────── */
+.benefit-card--inverse {
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
+  box-shadow: none;
+}
+
+.benefit-card--inverse:hover {
+  box-shadow: none;
+  transform: none;
+}
+
 @keyframes bounce-y {
   0%, 100% { transform: translateY(0); }
   50%       { transform: translateY(5px); }

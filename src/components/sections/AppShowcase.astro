@@ -3,52 +3,80 @@ import { APP_STORE_URL } from '../../config';
 ---
 <section
   id="app-showcase"
-  class="section-pad"
-  style="background: #F9F7F4;"
+  class="py-24 md:py-32 bg-white overflow-hidden"
   aria-label="App showcase"
 >
-  <div class="max-w-5xl mx-auto px-6">
-    <div class="flex flex-col lg:flex-row items-center gap-16 lg:gap-20">
+  <div class="text-center mb-16 md:mb-24 px-6 max-w-5xl mx-auto">
+    <h2 class="text-black text-4xl md:text-6xl font-black uppercase tracking-tighter mb-4">
+      The interface of destiny
+    </h2>
+    <p class="text-neutral-500 text-sm md:text-base uppercase tracking-[0.2em] font-mono">
+      Precision layout. Editorial calm.
+    </p>
+  </div>
 
-      <!-- Copy -->
-      <div class="flex-1 max-w-md reveal" id="showcase-copy">
-        <span class="pill-tag mb-6 inline-flex">The app</span>
-        <h2
-          class="font-black leading-tight tracking-tight mb-6 mt-4"
-          style="font-size: var(--text-headline); color: #111111;"
-        >
-          Everything in your chart,<br />nothing you don't need
-        </h2>
-        <p
-          class="mb-8 leading-relaxed"
-          style="font-size: var(--text-body-lg); color: #8A8A8A;"
-        >
-          AstrologyX renders your complete natal chart with planetary
-          positions sourced from real-time astronomical data.
-          Every transit, every progression — with the clarity of a scientific instrument.
+  <div class="relative w-full max-w-6xl mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-2 items-center gap-16 md:gap-24">
+    <!-- Phone mock (CSS) -->
+    <div class="order-2 md:order-1 flex justify-center">
+      <div
+        class="bg-black p-8 md:p-12 aspect-[9/19] max-w-[min(100%,320px)] w-full border-[12px] border-[#222] shadow-2xl overflow-hidden"
+        style="border-radius: 3rem;"
+      >
+        <div class="h-full w-full bg-[#0E0E0E] flex flex-col p-4 md:p-6 gap-6 min-h-[420px]">
+          <div class="flex justify-between items-center text-white/50 text-xs font-mono">
+            <span>9:41</span>
+            <div class="flex gap-1.5 items-center" aria-hidden="true">
+              <span class="w-3 h-2 border border-white/40 rounded-sm inline-block" />
+              <span class="w-3 h-2 border border-white/40 rounded-sm inline-block" />
+            </div>
+          </div>
+          <div class="mt-4">
+            <p class="text-white/40 text-[10px] uppercase font-mono tracking-widest mb-2">Current transit</p>
+            <h4 class="text-white text-2xl md:text-3xl font-bold leading-none uppercase">
+              Saturn<br />retrograde
+            </h4>
+          </div>
+          <div class="flex-grow flex items-center justify-center min-h-[140px]">
+            <div class="w-full max-w-[200px] aspect-square border border-white/10 rounded-full relative flex items-center justify-center">
+              <div class="absolute w-full h-px bg-white/20 rotate-45"></div>
+              <div class="absolute w-full h-px bg-white/20 -rotate-45"></div>
+              <div class="w-3/4 aspect-square border border-white/5 rounded-full flex items-center justify-center">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" class="text-white" aria-hidden="true">
+                  <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" fill="currentColor" opacity="0.9"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="bg-white/5 p-4 border-l-2 border-white mt-auto">
+            <p class="text-white text-xs leading-relaxed italic">
+              A useful time to review structure before you expand. Keep plans realistic.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modules -->
+    <div class="order-1 md:order-2 flex flex-col gap-12 text-left">
+      <div class="space-y-4 reveal" id="showcase-m1">
+        <span class="text-black font-mono text-xs px-2 py-1 border border-black/20 inline-block">Module 01</span>
+        <h3 class="text-3xl md:text-4xl font-black text-black uppercase tracking-tight">
+          Ultra-minimal charting
+        </h3>
+        <p class="text-neutral-600 leading-relaxed">
+          No clutter — your chart and readings stay readable. Data-forward layout so you can scan placements and context quickly.
         </p>
-
-        <ul class="space-y-4 mb-10">
-          {[
-            'Natal chart with all major aspects',
-            'Daily AI-generated reading, personalised',
-            'Real-time transit tracker',
-            'Synastry charts for any relationship',
-          ].map((item) => (
-            <li
-              class="flex items-start gap-3"
-              style="font-size: var(--text-body); color: #8A8A8A;"
-            >
-              <span
-                class="flex-shrink-0 mt-0.5"
-                style="color: #BEBEBE; font-size: 0.65rem; line-height: 1.8;"
-                aria-hidden="true"
-              >✦</span>
-              {item}
-            </li>
-          ))}
-        </ul>
-
+      </div>
+      <div class="space-y-4 reveal" id="showcase-m2">
+        <span class="text-black font-mono text-xs px-2 py-1 border border-black/20 inline-block">Module 02</span>
+        <h3 class="text-3xl md:text-4xl font-black text-black uppercase tracking-tight">
+          Daily synthesis
+        </h3>
+        <p class="text-neutral-600 leading-relaxed">
+          Daily guidance connects aspects and transits into plain language — tuned to your chart, not generic sign blurbs.
+        </p>
+      </div>
+      <div>
         <a
           href={APP_STORE_URL}
           target="_blank"
@@ -62,89 +90,9 @@ import { APP_STORE_URL } from '../../config';
             width="140"
             height="47"
             loading="lazy"
-            style="height: 47px; width: auto;"
+            class="h-12 w-auto"
           />
         </a>
-      </div>
-
-      <!-- Single phone mockup -->
-      <div class="flex-shrink-0 flex justify-center reveal" id="showcase-phone">
-        <div class="phone-frame">
-          <div class="phone-screen">
-            <!-- Status bar -->
-            <div class="flex justify-between items-center mb-7" style="opacity: 0.35;">
-              <span style="color: white; font-size: 10px;">9:41</span>
-              <div class="flex gap-1 items-center">
-                <span
-                  class="block border rounded-sm relative"
-                  style="width: 18px; height: 9px; border-color: rgba(255,255,255,0.6);"
-                >
-                  <span
-                    class="absolute"
-                    style="inset: 2px 3px 2px 2px; background: rgba(255,255,255,0.8); border-radius: 1px;"
-                  ></span>
-                </span>
-              </div>
-            </div>
-
-            <!-- Chart circle -->
-            <div class="flex justify-center mb-5">
-              <div class="relative" style="width: 160px; height: 160px;">
-                <svg viewBox="0 0 160 160" class="w-full h-full" aria-hidden="true">
-                  <circle cx="80" cy="80" r="74" stroke="white" stroke-width="0.5" fill="none" opacity="0.12"/>
-                  <circle cx="80" cy="80" r="60" stroke="white" stroke-width="0.3" fill="none" opacity="0.08"/>
-                  {Array.from({ length: 12 }).map((_, i) => {
-                    const angle = (i * 30 - 90) * Math.PI / 180;
-                    const x1 = (80 + 46 * Math.cos(angle)).toFixed(1);
-                    const y1 = (80 + 46 * Math.sin(angle)).toFixed(1);
-                    const x2 = (80 + 74 * Math.cos(angle)).toFixed(1);
-                    const y2 = (80 + 74 * Math.sin(angle)).toFixed(1);
-                    return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="white" stroke-width="0.5" opacity="0.18"/>`;
-                  }).join('')}
-                  <circle cx="80" cy="80" r="46" stroke="white" stroke-width="0.5" fill="none" opacity="0.18"/>
-                  <!-- Aspect lines -->
-                  <line x1="80" y1="6"  x2="118" y2="148" stroke="white" stroke-width="0.5" opacity="0.25"/>
-                  <line x1="80" y1="6"  x2="42"  y2="148" stroke="white" stroke-width="0.5" opacity="0.18"/>
-                  <line x1="6"  y1="80" x2="154" y2="80"  stroke="white" stroke-width="0.5" opacity="0.12"/>
-                  <!-- Planet dots -->
-                  <circle cx="80"  cy="6"   r="3"   fill="white" opacity="0.9"/>
-                  <circle cx="154" cy="80"  r="2.5" fill="white" opacity="0.65"/>
-                  <circle cx="118" cy="148" r="2"   fill="white" opacity="0.55"/>
-                  <circle cx="42"  cy="148" r="2.5" fill="white" opacity="0.75"/>
-                  <circle cx="6"   cy="80"  r="2"   fill="white" opacity="0.45"/>
-                  <circle cx="24"  cy="28"  r="2"   fill="white" opacity="0.65"/>
-                  <!-- Center label -->
-                  <text x="80" y="77" text-anchor="middle" fill="white" opacity="0.3" font-size="7" font-family="sans-serif" letter-spacing="1">NATAL</text>
-                  <text x="80" y="88" text-anchor="middle" fill="white" opacity="0.2" font-size="5.5" font-family="sans-serif" letter-spacing="0.5">CHART</text>
-                </svg>
-              </div>
-            </div>
-
-            <!-- Identity -->
-            <div class="text-center mb-5">
-              <p style="color: rgba(255,255,255,0.35); font-size: 9px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 4px;">Birth Chart</p>
-              <p style="color: white; font-weight: 700; font-size: 13px; letter-spacing: -0.2px;">Aries Rising · Leo Sun</p>
-              <p style="color: rgba(255,255,255,0.3); font-size: 10px; margin-top: 3px;">Scorpio Moon · Mercury in Gemini</p>
-            </div>
-
-            <!-- Planet list -->
-            <div style="margin-top: auto;">
-              {[
-                ['☉', 'Sun',  '14° Leo'],
-                ['☽', 'Moon', '22° Scorpio'],
-                ['↑', 'Asc',  '03° Aries'],
-              ].map(([sym, name, pos]) => (
-                <div class="flex items-center justify-between" style="margin-bottom: 8px;">
-                  <div class="flex items-center gap-2">
-                    <span style="color: rgba(255,255,255,0.3); font-size: 11px; width: 14px;">{sym}</span>
-                    <span style="color: rgba(255,255,255,0.55); font-size: 11px;">{name}</span>
-                  </div>
-                  <span style="color: rgba(255,255,255,0.3); font-size: 10px; font-family: monospace;">{pos}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </div>
@@ -160,9 +108,9 @@ import { APP_STORE_URL } from '../../config';
         }
       });
     },
-    { threshold: 0.15 }
+    { threshold: 0.12 }
   );
-  ['showcase-copy', 'showcase-phone'].forEach((id) => {
+  ['showcase-m1', 'showcase-m2'].forEach((id) => {
     const el = document.getElementById(id);
     if (el) observer.observe(el);
   });

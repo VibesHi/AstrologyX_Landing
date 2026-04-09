@@ -10,8 +10,8 @@ interface Props {
 }
 
 const {
-  title = 'AstrologyX — Understand Yourself a Little More, Every Day',
-  description = 'Your birth chart, decoded by AI. Personalised daily readings, real-time planetary data, and synastry charts — free on the App Store.',
+  title = 'AstrologyX — Precision Astrology',
+  description = 'Your birth chart, decoded by AI. Personalised readings, transits, and synastry — on the App Store.',
   ogImage = '/og-image.png',
   canonical,
 } = Astro.props;
@@ -20,17 +20,16 @@ const siteURL = 'https://astrologyx.com';
 const resolvedCanonical = canonical ?? siteURL + Astro.url.pathname;
 ---
 <!doctype html>
-<html lang="en">
+<html lang="en" class="dark">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#F9F7F4" />
+    <meta name="theme-color" content="#131313" />
 
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={resolvedCanonical} />
 
-    <!-- Open Graph -->
     <meta property="og:type"        content="website" />
     <meta property="og:url"         content={resolvedCanonical} />
     <meta property="og:title"       content={title} />
@@ -39,21 +38,22 @@ const resolvedCanonical = canonical ?? siteURL + Astro.url.pathname;
     <meta property="og:image:width"  content="1200" />
     <meta property="og:image:height" content="630" />
 
-    <!-- Twitter / X Card -->
     <meta name="twitter:card"        content="summary_large_image" />
     <meta name="twitter:title"       content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image"       content={siteURL + ogImage} />
 
-    <!-- Apple Smart App Banner -->
     <meta name="apple-itunes-app" content={`app-id=${APP_STORE_ID}`} />
 
-    <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
     <slot name="head" />
   </head>
   <body>
+    <div class="scroll-progress-line hidden md:block" aria-hidden="true">
+      <div class="scroll-progress-line__track"></div>
+      <div class="scroll-progress-line__fill"></div>
+    </div>
     <slot />
   </body>
 </html>
