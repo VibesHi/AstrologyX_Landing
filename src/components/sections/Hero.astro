@@ -22,7 +22,8 @@ import { APP_STORE_URL } from '../../config';
       class="hero-in hero-in-delay-1 text-2xl md:text-4xl font-light max-w-2xl mb-12"
       style="color: #c6c6c6; line-height: 1.25;"
     >
-      Your birth chart, decoded by AI. Precise. Clear. Built for daily use.
+      <span class="block">Your birth chart. Precise. Clear.</span>
+      <span class="block mt-2">Built for daily use.</span>
     </p>
 
     <div class="hero-in hero-in-delay-2 flex flex-wrap items-center gap-6">
@@ -31,24 +32,17 @@ import { APP_STORE_URL } from '../../config';
         target="_blank"
         rel="noopener noreferrer"
         class="badge-appstore"
-        aria-label="Download AstrologyX on the App Store"
+        aria-label="Scan QR code to install AstrologyX on the App Store"
       >
         <img
-          src="/img/appstore.png"
-          alt="Download on the App Store"
-          width="180"
-          height="60"
+          src="/img/app-store-qr.png"
+          alt="Scan QR code to install AstrologyX on the App Store"
+          width="512"
+          height="512"
           fetchpriority="high"
-          class="h-14 w-auto rounded-xl"
+          class="h-auto w-[min(100%,200px)] md:w-[220px] max-w-full invert"
         />
       </a>
-      <div
-        class="hidden sm:flex items-center gap-4 border-l border-white/20 pl-6"
-        style="font-size: 0.625rem; letter-spacing: 0.12em; text-transform: uppercase; color: #919191;"
-      >
-        <span class="font-mono">iOS</span>
-        <span class="font-mono text-white">App Store</span>
-      </div>
     </div>
 
     <div

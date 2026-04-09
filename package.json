@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "generate:qr": "node scripts/generate-app-store-qr.mjs"
   },
   "dependencies": {
     "@fontsource-variable/inter": "^5.1.1",
