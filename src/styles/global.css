@@ -67,6 +67,19 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
+/* md+: hide OS scrollbar — page still scrolls; right-edge progress line is the affordance */
+@media (min-width: 768px) {
+  html {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* legacy Edge */
+  }
+  html::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+}
+
 body {
   font-family: var(--font-sans);
   background-color: var(--color-bg-page);
@@ -100,6 +113,8 @@ body {
   height: 100vh;
   z-index: 100;
   pointer-events: none;
+  /* White on dark sections, reads as black on light (e.g. #app-showcase, Final CTA) */
+  mix-blend-mode: difference;
 }
 
 .scroll-progress-line__track {

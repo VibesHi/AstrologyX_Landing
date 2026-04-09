@@ -36,14 +36,14 @@ const blocks = [
   {blocks.map(({ headline, body, image, alt, imageSide, cta }, i) => (
     <div
       class:list={[
-        'grid grid-cols-1 md:grid-cols-2 border-b border-white/10',
+        'grid grid-cols-1 md:grid-cols-2 border-b border-white/[0.04]',
         i === blocks.length - 1 && 'border-b-0',
       ]}
     >
       {imageSide === 'right' ? (
         <>
           <div
-            class="p-10 md:p-20 flex flex-col justify-center items-start md:border-r border-white/10"
+            class="p-10 md:p-20 flex flex-col justify-center items-start md:border-r border-white/[0.04]"
             style="background: #131313;"
           >
             <h2 class="text-4xl md:text-6xl font-black uppercase text-white mb-8 leading-[0.95] tracking-tight">
@@ -89,7 +89,7 @@ const blocks = [
             />
           </div>
           <div
-            class="p-10 md:p-20 flex flex-col justify-center items-start md:border-l border-white/10"
+            class="p-10 md:p-20 flex flex-col justify-center items-start md:border-l border-white/[0.04]"
             style="background: #131313;"
           >
             <h2 class="text-4xl md:text-6xl font-black uppercase text-white mb-8 leading-[0.95] tracking-tight">
