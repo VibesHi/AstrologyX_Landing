@@ -43,7 +43,11 @@ const resolvedCanonical = canonical ?? siteURL + Astro.url.pathname;
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image"       content={siteURL + ogImage} />
 
-    <meta name="apple-itunes-app" content={`app-id=${APP_STORE_ID}`} />
+    <!-- iOS Safari: native Smart App Banner (top). QR in hero/CTA is lg+ only. -->
+    <meta
+      name="apple-itunes-app"
+      content={`app-id=${APP_STORE_ID}, app-argument=${encodeURIComponent(resolvedCanonical)}`}
+    />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 

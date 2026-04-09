@@ -2,11 +2,12 @@
   "name": "astrologyx-landing",
   "type": "module",
   "version": "1.0.0",
+  "packageManager": "bun@1.3.9",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "generate:qr": "node scripts/generate-app-store-qr.mjs"
+    "generate:qr": "bun scripts/generate-app-store-qr.mjs"
   },
   "dependencies": {
     "@fontsource-variable/inter": "^5.1.1",

@@ -14,8 +14,8 @@ import { APP_STORE_URL } from '../../config';
       Ascend the<br />grid
     </h2>
 
-    <div class="flex flex-col md:flex-row items-center justify-center gap-12 md:gap-16">
-      <div class="flex flex-col items-center gap-4">
+    <div class="flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-16">
+      <div class="hidden lg:flex flex-col items-center gap-4">
         <img
           src="/img/app-store-qr.png"
           alt="QR code to open AstrologyX on the App Store"
@@ -27,7 +27,7 @@ import { APP_STORE_URL } from '../../config';
         <p class="font-mono text-[10px] text-black tracking-widest uppercase">Scan to install</p>
       </div>
 
-      <div class="hidden md:block h-40 w-px bg-black/10" aria-hidden="true"></div>
+      <div class="hidden lg:block h-40 w-px bg-black/10" aria-hidden="true"></div>
 
       <div class="flex flex-col items-center gap-8">
         <a
@@ -54,34 +54,6 @@ import { APP_STORE_URL } from '../../config';
   </div>
 </section>
 
-<!-- Sticky mobile CTA bar -->
-<div
-  id="mobile-cta"
-  class="mobile-cta-bar md:hidden"
-  role="complementary"
-  aria-label="Download banner"
->
-  <p class="text-sm font-semibold leading-tight" style="color: #e2e2e2;">
-    Download AstrologyX<br />
-    <span class="font-normal text-[#919191]">App Store</span>
-  </p>
-  <a
-    href={APP_STORE_URL}
-    target="_blank"
-    rel="noopener noreferrer"
-    class="badge-appstore flex-shrink-0"
-    aria-label="Download on the App Store"
-  >
-    <img
-      src="/img/appstore.png"
-      alt="App Store"
-      width="100"
-      height="33"
-      class="h-8 w-auto"
-    />
-  </a>
-</div>
-
 <script>
   const ctaBlock = document.getElementById('cta-block');
   if (ctaBlock) {
@@ -95,17 +67,5 @@ import { APP_STORE_URL } from '../../config';
       { threshold: 0.15 }
     );
     obs.observe(ctaBlock);
-  }
-
-  const mobileCta = document.getElementById('mobile-cta');
-  const hero = document.getElementById('hero');
-  if (mobileCta && hero) {
-    const stickyObs = new IntersectionObserver(
-      ([entry]) => {
-        mobileCta.classList.toggle('show', !entry.isIntersecting);
-      },
-      { threshold: 0 }
-    );
-    stickyObs.observe(hero);
   }
 </script>

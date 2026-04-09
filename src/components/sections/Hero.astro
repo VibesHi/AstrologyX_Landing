@@ -3,46 +3,60 @@ import { APP_STORE_URL } from '../../config';
 ---
 <section
   id="hero"
-  class="relative overflow-hidden"
+  class="relative overflow-x-hidden"
   style="background: #131313; min-height: calc(100vh - 88px);"
   aria-label="Hero"
 >
+  <!-- Soft glow: depth without clutter (esp. on small screens) -->
   <div
-    class="relative z-10 flex flex-col items-start justify-center px-6 md:px-12 pt-16 pb-24 md:pt-24 md:pb-32"
+    class="pointer-events-none absolute inset-0 z-0 overflow-hidden"
+    aria-hidden="true"
+  >
+    <div
+      class="absolute -left-[15%] top-[12%] h-[min(75vmin,560px)] w-[min(95vmin,560px)] rounded-full opacity-[0.065]"
+      style="background: radial-gradient(circle at 35% 38%, rgba(255,255,255,0.9) 0%, transparent 70%);"
+    />
+  </div>
+
+  <div
+    class="relative z-10 flex w-full min-w-0 max-w-full flex-col items-start justify-center px-5 sm:px-6 md:px-12 pt-14 pb-20 sm:pt-16 sm:pb-24 md:pt-24 md:pb-32"
     style="min-height: calc(100vh - 88px);"
   >
     <h1
-      class="hero-in font-black leading-[0.85] tracking-tighter uppercase text-white mb-8 max-w-[min(100%,20ch)]"
-      style="font-size: var(--text-hero-mega);"
+      class="hero-in w-full min-w-0 max-w-full font-black uppercase text-white text-balance mb-6 sm:mb-8"
+      style="font-size: var(--text-hero-mega); line-height: 0.9; letter-spacing: -0.045em;"
     >
       AstrologyX
     </h1>
 
     <p
-      class="hero-in hero-in-delay-1 text-2xl md:text-4xl font-light max-w-2xl mb-12"
-      style="color: #c6c6c6; line-height: 1.25;"
+      class="hero-in hero-in-delay-1 max-w-2xl mb-10 sm:mb-12 text-[clamp(1.125rem,0.95rem+1.1vw,2.25rem)] md:text-4xl font-light leading-snug"
+      style="color: #c6c6c6;"
     >
       <span class="block">Your birth chart. Precise. Clear.</span>
       <span class="block mt-2">Built for daily use.</span>
     </p>
 
     <div class="hero-in hero-in-delay-2 flex flex-wrap items-center gap-6">
-      <a
-        href={APP_STORE_URL}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="badge-appstore"
-        aria-label="Scan QR code to install AstrologyX on the App Store"
-      >
-        <img
-          src="/img/app-store-qr.png"
-          alt="Scan QR code to install AstrologyX on the App Store"
-          width="512"
-          height="512"
-          fetchpriority="high"
-          class="h-auto w-[min(100%,200px)] md:w-[220px] max-w-full invert"
-        />
-      </a>
+      <!-- Wrapper controls visibility — .badge-appstore sets display:inline-block and was overriding Tailwind `hidden` on the same element -->
+      <div class="hidden lg:block">
+        <a
+          href={APP_STORE_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="badge-appstore"
+          aria-label="Scan QR code to install AstrologyX on the App Store"
+        >
+          <img
+            src="/img/app-store-qr.png"
+            alt="Scan QR code to install AstrologyX on the App Store"
+            width="512"
+            height="512"
+            fetchpriority="high"
+            class="h-auto w-[min(100%,200px)] lg:w-[220px] max-w-full invert"
+          />
+        </a>
+      </div>
     </div>
 
     <div
