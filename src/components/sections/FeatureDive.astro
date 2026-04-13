@@ -5,36 +5,56 @@ import imgBirth from '../../assets/features/feature-birth.png';
 import imgHoroscope from '../../assets/features/feature-horoscope.png';
 import imgSynastry from '../../assets/features/feature-synastry.png';
 
-const blocks = [
+type Block = {
+  headline?: string;
+  headlineLines?: readonly [string, string];
+  paragraphs: readonly string[];
+  image: typeof imgBirth;
+  alt: string;
+  imageSide: 'left' | 'right';
+  cta: string;
+  imageClass?: string;
+};
+
+const blocks: Block[] = [
   {
-    headline: 'Personalized birth chart',
-    body: 'Your chart is built from the time and place you were born — houses, aspects, and placements in one clear view you can return to anytime.',
+    headlineLines: ['Understand', 'BIRTH CHART'] as const,
+    paragraphs: [
+      'Your Birth Chart is the foundation of real astrology — a unique map of the sky at the moment you were born. It explains your personality, emotional patterns, strengths, challenges, and the structure of who you are.',
+    ],
     image: imgBirth,
     alt: 'Abstract minimalist chart lines on dark background',
-    imageSide: 'right' as const,
-    cta: 'Get the app',
+    imageSide: 'right',
+    cta: 'Get ur chart',
+    imageClass: 'opacity-50',
   },
   {
-    headline: 'Horoscope intelligence',
-    body: 'Daily guidance reflects what is active in your chart — not recycled copy written for every sign. Short, specific, and easy to act on.',
+    headline: 'decode planetary motion',
+    paragraphs: [
+      "Powered by NASA's star-position data and our own proprietary tech, we create transit horoscopes with exceptional accuracy—made just for you.",
+    ],
     image: imgHoroscope,
     alt: 'Abstract orbital visualization on dark background',
-    imageSide: 'left' as const,
-    cta: 'View on App Store',
+    imageSide: 'left',
+    cta: 'try it now',
   },
   {
-    headline: 'Social synastry',
-    body: 'Compare charts to see compatibility and tension points with clarity — useful context for relationships you care about.',
+    headline: 'real-time insights',
+    paragraphs: [
+      'Your 2026 astro readings have officially arrived in the app, complete with fresh insights, predictions, and personalized guidance for the year ahead.',
+    ],
     image: imgSynastry,
     alt: 'Abstract network pattern on dark background',
-    imageSide: 'right' as const,
-    cta: 'Compare charts',
+    imageSide: 'right',
+    cta: 'See insights',
+    imageClass: 'opacity-40',
   },
 ];
 ---
 <div id="features" aria-label="Feature details">
-  {blocks.map(({ headline, body, image, alt, imageSide, cta }, i) => (
-    <div
+  {blocks.map(({ headline, headlineLines, paragraphs, image, alt, imageSide, cta, imageClass }, i) => (
+    <section
+      id={i === 0 ? 'birth-chart' : undefined}
       class:list={[
         'grid grid-cols-1 md:grid-cols-2 border-b border-white/[0.04]',
         i === blocks.length - 1 && 'border-b-0',
@@ -43,13 +63,24 @@ const blocks = [
       {imageSide === 'right' ? (
         <>
           <div
-            class="p-10 md:p-20 flex flex-col justify-center items-start md:border-r border-white/[0.04]"
+            class="p-10 md:p-24 flex flex-col justify-center items-start md:border-r border-white/[0.04] min-h-[280px] md:min-h-[640px]"
             style="background: #131313;"
           >
             <h2 class="text-4xl md:text-6xl font-black uppercase text-white mb-8 leading-[0.95] tracking-tight">
-              {headline}
+              {headlineLines ? (
+                <>
+                  <span class="block whitespace-pre-wrap">{headlineLines[0]}</span>
+                  <span class="block whitespace-pre-wrap">{headlineLines[1]}</span>
+                </>
+              ) : (
+                headline
+              )}
             </h2>
-            <p class="text-[#c6c6c6] text-lg md:text-xl leading-relaxed mb-12 max-w-xl">{body}</p>
+            <div class="text-[#c6c6c6] text-lg md:text-xl leading-relaxed mb-12 max-w-xl space-y-0">
+              {paragraphs.map((p) => (
+                <p class="mb-0 last:mb-0 leading-[1.625]">{p}</p>
+              ))}
+            </div>
             <a
               href={APP_STORE_URL}
               target="_blank"
@@ -60,7 +91,7 @@ const blocks = [
             </a>
           </div>
           <div
-            class="min-h-[280px] md:min-h-[400px] flex items-center justify-center p-8 md:p-12 overflow-hidden"
+            class="min-h-[280px] md:min-h-[640px] flex items-center justify-center p-8 md:p-12 overflow-hidden"
             style="background: #0e0e0e;"
           >
             <Image
@@ -69,14 +100,17 @@ const blocks = [
               width={800}
               height={600}
               loading="lazy"
-              class="w-full h-full max-h-[min(420px,50vh)] object-cover grayscale opacity-60"
+              class:list={[
+                'w-full h-full max-h-[min(420px,50vh)] object-cover grayscale',
+                imageClass ?? 'opacity-60',
+              ]}
             />
           </div>
         </>
       ) : (
         <>
           <div
-            class="min-h-[280px] md:min-h-[400px] flex items-center justify-center p-8 md:p-12 overflow-hidden"
+            class="min-h-[280px] md:min-h-[640px] flex items-center justify-center p-8 md:p-12 overflow-hidden"
             style="background: #0e0e0e;"
           >
             <Image
@@ -85,17 +119,31 @@ const blocks = [
               width={800}
               height={600}
               loading="lazy"
-              class="w-full h-full max-h-[min(420px,50vh)] object-cover grayscale opacity-60"
+              class:list={[
+                'w-full h-full max-h-[min(420px,50vh)] object-cover grayscale',
+                imageClass ?? 'opacity-60',
+              ]}
             />
           </div>
           <div
-            class="p-10 md:p-20 flex flex-col justify-center items-start md:border-l border-white/[0.04]"
+            class="p-10 md:p-24 flex flex-col justify-center items-start md:border-l border-white/[0.04] min-h-[280px] md:min-h-[640px]"
             style="background: #131313;"
           >
             <h2 class="text-4xl md:text-6xl font-black uppercase text-white mb-8 leading-[0.95] tracking-tight">
-              {headline}
+              {headlineLines ? (
+                <>
+                  <span class="block whitespace-pre-wrap">{headlineLines[0]}</span>
+                  <span class="block whitespace-pre-wrap">{headlineLines[1]}</span>
+                </>
+              ) : (
+                headline
+              )}
             </h2>
-            <p class="text-[#c6c6c6] text-lg md:text-xl leading-relaxed mb-12 max-w-xl">{body}</p>
+            <div class="text-[#c6c6c6] text-lg md:text-xl leading-relaxed mb-12 max-w-xl space-y-0">
+              {paragraphs.map((p) => (
+                <p class="mb-0 last:mb-0 leading-[1.625]">{p}</p>
+              ))}
+            </div>
             <a
               href={APP_STORE_URL}
               target="_blank"
@@ -107,6 +155,6 @@ const blocks = [
           </div>
         </>
       )}
-    </div>
+    </section>
   ))}
 </div>

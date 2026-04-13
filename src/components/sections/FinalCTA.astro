@@ -9,21 +9,24 @@ import { APP_STORE_URL } from '../../config';
   <div class="max-w-5xl mx-auto reveal" id="cta-block">
     <h2
       class="font-black uppercase tracking-tighter leading-none mb-12 md:mb-16 text-black"
-      style="font-size: clamp(3rem, 8vw, 6rem);"
+      style="font-size: clamp(3rem, 6vw + 1.5rem, 6rem);"
     >
-      Ascend the<br />grid
+      <span class="block">Ascend the</span>
+      <span class="block">grid</span>
     </h2>
 
     <div class="flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-16">
       <div class="hidden lg:flex flex-col items-center gap-4">
-        <img
-          src="/img/app-store-qr.png"
-          alt="QR code to open AstrologyX on the App Store"
-          width="160"
-          height="160"
-          loading="lazy"
-          class="w-40 h-40"
-        />
+        <div class="border border-black border-solid size-40 flex items-center justify-center shrink-0 p-1">
+          <img
+            src="/img/app-store-qr.png"
+            alt="QR code to open AstrologyX on the App Store"
+            width="152"
+            height="152"
+            loading="lazy"
+            class="w-[152px] h-[152px] max-w-full object-contain"
+          />
+        </div>
         <p class="font-mono text-[10px] text-black tracking-widest uppercase">Scan to install</p>
       </div>
 
@@ -46,8 +49,9 @@ import { APP_STORE_URL } from '../../config';
             class="h-16 w-auto"
           />
         </a>
-        <p class="max-w-xs text-neutral-600 text-sm font-medium">
-          Available for iOS on the App Store.
+        <p class="max-w-sm text-sm font-medium leading-5 text-neutral-600">
+          Available for iOS. Android integration launching<br />
+          Q4 2024.
         </p>
       </div>
     </div>

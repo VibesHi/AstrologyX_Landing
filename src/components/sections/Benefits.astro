@@ -1,40 +1,44 @@
 ---
 const benefits = [
   {
-    icon: `<svg width="40" height="40" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <path d="M14 2L16.5 9.5L24 12L16.5 14.5L14 22L11.5 14.5L4 12L11.5 9.5L14 2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
-      <circle cx="14" cy="12" r="2" fill="currentColor"/>
+    icon: `<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M20 4l1.8 6.2L28 12l-6.2 1.8L20 20l-1.8-6.2L12 12l6.2-1.8L20 4z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+      <path d="M20 24l1.2 4.1L25 30l-4.1 1.2L20 35l-1.2-4.1L15 30l4.1-1.2L20 24z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round" opacity="0.85"/>
     </svg>`,
-    headline: 'Algorithmic insights',
-    body: 'Personalised readings from your chart — not one-size horoscopes for every sign. The app focuses on what matters for your placements and transits.',
+    headline: 'Daily horoscopes',
+    body:
+      'Your horoscope is generated using real astrological data — no generic predictions. Everything is tailored specifically to your Birth Chart and current planetary influences.',
   },
   {
-    icon: `<svg width="40" height="40" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <path d="M4 20V8h4v12H4zm8-6V4h4v10h-4zm8 4v-8h4v8h-4z" fill="currentColor" opacity="0.9"/>
+    icon: `<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M8 28V12h6v16H8zm9-10V8h6v10h-6zm9 6V16h6v18h-6z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
     </svg>`,
-    headline: 'Real-time transits',
-    body: 'Track what is active in your chart over time so daily context stays aligned with your life — not a static snapshot.',
+    headline: 'Birth chart',
+    body:
+      'Read a quick summary or open a full explanation with clear, beginner‑friendly astrological insights.',
   },
   {
-    icon: `<svg width="40" height="40" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <circle cx="10" cy="14" r="5" stroke="currentColor" stroke-width="1.5"/>
-      <circle cx="18" cy="14" r="5" stroke="currentColor" stroke-width="1.5"/>
-      <path d="M3 22c0-3 2.6-5.5 7-5.5h8c4.4 0 7 2.5 7 5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    icon: `<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle cx="14" cy="20" r="6" stroke="currentColor" stroke-width="1.5"/>
+      <circle cx="26" cy="20" r="6" stroke="currentColor" stroke-width="1.5"/>
+      <path d="M8 28c0-4 3.2-7 12-7s12 3 12 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      <path d="M20 8v4M20 28v4" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" opacity="0.6"/>
     </svg>`,
-    headline: 'Synced compatibility',
-    body: 'Compare charts with partners or colleagues. Synastry and overlays that show how two charts meet — clearly and calmly.',
+    headline: 'Planets transit',
+    body:
+      'Daily guidance about relationships, finances, communication, energy, emotions, and the key themes shaping your day.',
   },
 ];
 ---
 <section
   id="benefits"
-  class="section-pad border-t border-white/[0.04]"
+  class="border-t border-white/[0.04] pt-[129px] pb-[128px]"
   style="background: #131313;"
   aria-label="Core benefits"
 >
   <div class="max-w-6xl mx-auto px-6 md:px-12">
     <div
-      class="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-12 reveal-stagger"
+      class="grid grid-cols-1 md:grid-cols-3 gap-x-16 gap-y-16 md:gap-y-0 reveal-stagger"
       id="benefits-grid"
     >
       {benefits.map(({ icon, headline, body }) => (
