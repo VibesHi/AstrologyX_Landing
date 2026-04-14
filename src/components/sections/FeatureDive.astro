@@ -3,13 +3,14 @@ import { Image } from 'astro:assets';
 import { APP_STORE_URL } from '../../config';
 import imgBirth from '../../assets/features/feature-birth.png';
 import imgHoroscope from '../../assets/features/feature-horoscope.png';
-import imgSynastry from '../../assets/features/feature-synastry.png';
 
 type Block = {
   headline?: string;
   headlineLines?: readonly [string, string];
   paragraphs: readonly string[];
-  image: typeof imgBirth;
+  image?: typeof imgBirth;
+  /** Served from /public, e.g. /insightsImage.png */
+  publicImage?: { src: string; width: number; height: number };
   alt: string;
   imageSide: 'left' | 'right';
   cta: string;
@@ -43,16 +44,16 @@ const blocks: Block[] = [
     paragraphs: [
       'Your 2026 astro readings have officially arrived in the app, complete with fresh insights, predictions, and personalized guidance for the year ahead.',
     ],
-    image: imgSynastry,
-    alt: 'Abstract network pattern on dark background',
+    publicImage: { src: '/insightsImage.png', width: 1200, height: 1200 },
+    alt: 'Network of insight nodes',
     imageSide: 'right',
     cta: 'See insights',
-    imageClass: 'opacity-40',
+    imageClass: 'opacity-95 grayscale-0',
   },
 ];
 ---
 <div id="features" aria-label="Feature details">
-  {blocks.map(({ headline, headlineLines, paragraphs, image, alt, imageSide, cta, imageClass }, i) => (
+  {blocks.map(({ headline, headlineLines, paragraphs, image, publicImage, alt, imageSide, cta, imageClass }, i) => (
     <section
       id={i === 0 ? 'birth-chart' : undefined}
       class:list={[
@@ -91,39 +92,81 @@ const blocks: Block[] = [
             </a>
           </div>
           <div
-            class="order-1 lg:order-2 min-w-0 min-h-[280px] lg:min-h-[640px] flex items-center justify-center p-8 lg:p-12 overflow-hidden"
+            class:list={[
+              'order-1 lg:order-2 min-w-0 min-h-[280px] lg:min-h-[640px] flex items-center justify-center overflow-hidden',
+              publicImage ? 'p-6' : 'p-8 lg:p-12',
+            ]}
             style="background: #0e0e0e;"
           >
-            <Image
-              src={image}
-              alt={alt}
-              width={800}
-              height={600}
-              loading="lazy"
-              class:list={[
-                'w-full h-full max-h-[min(420px,50vh)] object-cover grayscale',
-                imageClass ?? 'opacity-60',
-              ]}
-            />
+            {publicImage ? (
+              <div
+                class="relative mx-auto w-full max-w-[min(100%,min(90vw,28rem))] aspect-square min-h-0 rounded-sm bg-[#121212] ring-1 ring-white/[0.06]"
+              >
+                <div class="absolute inset-6 flex min-h-0 items-center justify-center">
+                  <img
+                    src={publicImage.src}
+                    alt={alt}
+                    width={publicImage.width}
+                    height={publicImage.height}
+                    loading="lazy"
+                    decoding="async"
+                    class:list={['h-full w-full object-contain', imageClass ?? '']}
+                  />
+                </div>
+              </div>
+            ) : (
+              <Image
+                src={image!}
+                alt={alt}
+                width={800}
+                height={600}
+                loading="lazy"
+                class:list={[
+                  'w-full h-full max-h-[min(420px,50vh)] object-cover grayscale',
+                  imageClass ?? 'opacity-60',
+                ]}
+              />
+            )}
           </div>
         </>
       ) : (
         <>
           <div
-            class="order-1 min-w-0 min-h-[280px] lg:min-h-[640px] flex items-center justify-center p-8 lg:p-12 overflow-hidden"
+            class:list={[
+              'order-1 min-w-0 min-h-[280px] lg:min-h-[640px] flex items-center justify-center overflow-hidden',
+              publicImage ? 'p-6' : 'p-8 lg:p-12',
+            ]}
             style="background: #0e0e0e;"
           >
-            <Image
-              src={image}
-              alt={alt}
-              width={800}
-              height={600}
-              loading="lazy"
-              class:list={[
-                'w-full h-full max-h-[min(420px,50vh)] object-cover grayscale',
-                imageClass ?? 'opacity-60',
-              ]}
-            />
+            {publicImage ? (
+              <div
+                class="relative mx-auto w-full max-w-[min(100%,min(90vw,28rem))] aspect-square min-h-0 rounded-sm bg-[#121212] ring-1 ring-white/[0.06]"
+              >
+                <div class="absolute inset-6 flex min-h-0 items-center justify-center">
+                  <img
+                    src={publicImage.src}
+                    alt={alt}
+                    width={publicImage.width}
+                    height={publicImage.height}
+                    loading="lazy"
+                    decoding="async"
+                    class:list={['h-full w-full object-contain', imageClass ?? '']}
+                  />
+                </div>
+              </div>
+            ) : (
+              <Image
+                src={image!}
+                alt={alt}
+                width={800}
+                height={600}
+                loading="lazy"
+                class:list={[
+                  'w-full h-full max-h-[min(420px,50vh)] object-cover grayscale',
+                  imageClass ?? 'opacity-60',
+                ]}
+              />
+            )}
           </div>
           <div
             class="order-2 min-w-0 p-10 lg:p-24 flex flex-col justify-center items-start lg:border-l border-white/[0.04] min-h-[280px] lg:min-h-[640px]"
