@@ -2,7 +2,6 @@
 import { Image } from 'astro:assets';
 import { APP_STORE_URL } from '../../config';
 import imgBirth from '../../assets/features/feature-birth.png';
-import imgHoroscope from '../../assets/features/feature-horoscope.png';
 
 type Block = {
   headline?: string;
@@ -34,7 +33,7 @@ const blocks: Block[] = [
     paragraphs: [
       "Powered by NASA's star-position data and our own proprietary tech, we create transit horoscopes with exceptional accuracy—made just for you.",
     ],
-    image: imgHoroscope,
+    publicImage: { src: '/planetaryMotionImage.png', width: 432, height: 432 },
     alt: 'Abstract orbital visualization on dark background',
     imageSide: 'left',
     cta: 'try it now',
@@ -96,11 +95,11 @@ const blocks: Block[] = [
               'order-1 lg:order-2 min-w-0 min-h-[280px] lg:min-h-[640px] flex items-center justify-center overflow-hidden',
               publicImage ? 'p-6' : 'p-8 lg:p-12',
             ]}
-            style="background: #0e0e0e;"
+            style={publicImage ? 'background: #000000' : 'background: #0e0e0e'}
           >
             {publicImage ? (
               <div
-                class="relative mx-auto w-full max-w-[min(100%,min(90vw,28rem))] aspect-square min-h-0 rounded-sm bg-[#121212] ring-1 ring-white/[0.06]"
+                class="relative mx-auto w-full max-w-[min(100%,min(90vw,28rem))] aspect-square min-h-0"
               >
                 <div class="absolute inset-6 flex min-h-0 items-center justify-center">
                   <img
@@ -110,7 +109,7 @@ const blocks: Block[] = [
                     height={publicImage.height}
                     loading="lazy"
                     decoding="async"
-                    class:list={['h-full w-full object-contain', imageClass ?? '']}
+                    class:list={['h-full w-full object-contain mix-blend-normal', imageClass ?? '']}
                   />
                 </div>
               </div>
@@ -136,11 +135,11 @@ const blocks: Block[] = [
               'order-1 min-w-0 min-h-[280px] lg:min-h-[640px] flex items-center justify-center overflow-hidden',
               publicImage ? 'p-6' : 'p-8 lg:p-12',
             ]}
-            style="background: #0e0e0e;"
+            style={publicImage ? 'background: #000000' : 'background: #0e0e0e'}
           >
             {publicImage ? (
               <div
-                class="relative mx-auto w-full max-w-[min(100%,min(90vw,28rem))] aspect-square min-h-0 rounded-sm bg-[#121212] ring-1 ring-white/[0.06]"
+                class="relative mx-auto w-full max-w-[min(100%,min(90vw,28rem))] aspect-square min-h-0"
               >
                 <div class="absolute inset-6 flex min-h-0 items-center justify-center">
                   <img
@@ -150,7 +149,7 @@ const blocks: Block[] = [
                     height={publicImage.height}
                     loading="lazy"
                     decoding="async"
-                    class:list={['h-full w-full object-contain', imageClass ?? '']}
+                    class:list={['h-full w-full object-contain mix-blend-normal', imageClass ?? '']}
                   />
                 </div>
               </div>
