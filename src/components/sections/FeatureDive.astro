@@ -1,15 +1,12 @@
 ---
-import { Image } from 'astro:assets';
 import { APP_STORE_URL } from '../../config';
-import imgBirth from '../../assets/features/feature-birth.png';
 
 type Block = {
   headline?: string;
   headlineLines?: readonly [string, string];
   paragraphs: readonly string[];
-  image?: typeof imgBirth;
-  /** Served from /public, e.g. /insightsImage.png */
-  publicImage?: { src: string; width: number; height: number };
+  /** Served from /public */
+  publicImage: { src: string; width: number; height: number };
   alt: string;
   imageSide: 'left' | 'right';
   cta: string;
@@ -22,11 +19,10 @@ const blocks: Block[] = [
     paragraphs: [
       'Your Birth Chart is the foundation of real astrology — a unique map of the sky at the moment you were born. It explains your personality, emotional patterns, strengths, challenges, and the structure of who you are.',
     ],
-    image: imgBirth,
-    alt: 'Abstract minimalist chart lines on dark background',
+    publicImage: { src: '/birthChartImage.png', width: 444, height: 444 },
+    alt: 'Minimalist circular birth chart grid on dark background',
     imageSide: 'right',
     cta: 'Get ur chart',
-    imageClass: 'opacity-50',
   },
   {
     headline: 'decode planetary motion',
@@ -52,7 +48,7 @@ const blocks: Block[] = [
 ];
 ---
 <div id="features" aria-label="Feature details">
-  {blocks.map(({ headline, headlineLines, paragraphs, image, publicImage, alt, imageSide, cta, imageClass }, i) => (
+  {blocks.map(({ headline, headlineLines, paragraphs, publicImage, alt, imageSide, cta, imageClass }, i) => (
     <section
       id={i === 0 ? 'birth-chart' : undefined}
       class:list={[
@@ -91,81 +87,47 @@ const blocks: Block[] = [
             </a>
           </div>
           <div
-            class:list={[
-              'order-1 lg:order-2 min-w-0 min-h-[280px] lg:min-h-[640px] flex items-center justify-center overflow-hidden',
-              publicImage ? 'p-6' : 'p-8 lg:p-12',
-            ]}
-            style={publicImage ? 'background: #000000' : 'background: #0e0e0e'}
+            class="order-1 lg:order-2 min-w-0 min-h-[280px] lg:min-h-[640px] flex items-center justify-center overflow-hidden p-6"
+            style="background: #000000"
           >
-            {publicImage ? (
-              <div
-                class="relative mx-auto w-full max-w-[min(100%,min(90vw,28rem))] aspect-square min-h-0"
-              >
-                <div class="absolute inset-6 flex min-h-0 items-center justify-center">
-                  <img
-                    src={publicImage.src}
-                    alt={alt}
-                    width={publicImage.width}
-                    height={publicImage.height}
-                    loading="lazy"
-                    decoding="async"
-                    class:list={['h-full w-full object-contain mix-blend-normal', imageClass ?? '']}
-                  />
-                </div>
+            <div
+              class="relative mx-auto w-full max-w-[min(100%,min(90vw,28rem))] aspect-square min-h-0"
+            >
+              <div class="absolute inset-6 flex min-h-0 items-center justify-center">
+                <img
+                  src={publicImage.src}
+                  alt={alt}
+                  width={publicImage.width}
+                  height={publicImage.height}
+                  loading="lazy"
+                  decoding="async"
+                  class:list={['h-full w-full object-contain mix-blend-normal', imageClass ?? '']}
+                />
               </div>
-            ) : (
-              <Image
-                src={image!}
-                alt={alt}
-                width={800}
-                height={600}
-                loading="lazy"
-                class:list={[
-                  'w-full h-full max-h-[min(420px,50vh)] object-cover grayscale',
-                  imageClass ?? 'opacity-60',
-                ]}
-              />
-            )}
+            </div>
           </div>
         </>
       ) : (
         <>
           <div
-            class:list={[
-              'order-1 min-w-0 min-h-[280px] lg:min-h-[640px] flex items-center justify-center overflow-hidden',
-              publicImage ? 'p-6' : 'p-8 lg:p-12',
-            ]}
-            style={publicImage ? 'background: #000000' : 'background: #0e0e0e'}
+            class="order-1 min-w-0 min-h-[280px] lg:min-h-[640px] flex items-center justify-center overflow-hidden p-6"
+            style="background: #000000"
           >
-            {publicImage ? (
-              <div
-                class="relative mx-auto w-full max-w-[min(100%,min(90vw,28rem))] aspect-square min-h-0"
-              >
-                <div class="absolute inset-6 flex min-h-0 items-center justify-center">
-                  <img
-                    src={publicImage.src}
-                    alt={alt}
-                    width={publicImage.width}
-                    height={publicImage.height}
-                    loading="lazy"
-                    decoding="async"
-                    class:list={['h-full w-full object-contain mix-blend-normal', imageClass ?? '']}
-                  />
-                </div>
+            <div
+              class="relative mx-auto w-full max-w-[min(100%,min(90vw,28rem))] aspect-square min-h-0"
+            >
+              <div class="absolute inset-6 flex min-h-0 items-center justify-center">
+                <img
+                  src={publicImage.src}
+                  alt={alt}
+                  width={publicImage.width}
+                  height={publicImage.height}
+                  loading="lazy"
+                  decoding="async"
+                  class:list={['h-full w-full object-contain mix-blend-normal', imageClass ?? '']}
+                />
               </div>
-            ) : (
-              <Image
-                src={image!}
-                alt={alt}
-                width={800}
-                height={600}
-                loading="lazy"
-                class:list={[
-                  'w-full h-full max-h-[min(420px,50vh)] object-cover grayscale',
-                  imageClass ?? 'opacity-60',
-                ]}
-              />
-            )}
+            </div>
           </div>
           <div
             class="order-2 min-w-0 p-10 lg:p-24 flex flex-col justify-center items-start lg:border-l border-white/[0.04] min-h-[280px] lg:min-h-[640px]"
