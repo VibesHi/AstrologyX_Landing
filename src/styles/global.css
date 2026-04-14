@@ -43,7 +43,12 @@
   --text-body: clamp(1rem, 0.9rem + 0.4vw, 1.125rem);
   --text-caption: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
 
+  /* Matches fixed header + spacer; update if Nav padding changes */
+  --site-nav-height: 5.5rem;
   --space-section: 7rem;
+  --space-section-y-sm: clamp(3rem, 6vw + 1.5rem, 5rem);
+  --space-section-y-md: clamp(5rem, 8vw + 2rem, 7rem);
+  --space-section-y-lg: clamp(6rem, 10vw + 2rem, 8.0625rem);
   --space-component: 2rem;
   --space-element: 1rem;
 
@@ -65,10 +70,11 @@
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
+  scroll-padding-top: var(--site-nav-height);
 }
 
-/* md+: hide OS scrollbar — page still scrolls; right-edge progress line is the affordance */
-@media (min-width: 768px) {
+/* lg+: hide OS scrollbar — page still scrolls; right-edge progress line is the affordance */
+@media (min-width: 1024px) {
   html {
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none; /* legacy Edge */
@@ -104,10 +110,30 @@ body {
   padding-bottom: var(--space-section);
 }
 
+/* Responsive vertical section rhythm (mobile → desktop) */
+.section-pad-y {
+  padding-top: var(--space-section-y-sm);
+  padding-bottom: var(--space-section-y-sm);
+}
+
+@media (min-width: 768px) {
+  .section-pad-y {
+    padding-top: var(--space-section-y-md);
+    padding-bottom: var(--space-section-y-md);
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-pad-y {
+    padding-top: var(--space-section-y-lg);
+    padding-bottom: var(--space-section-y-lg);
+  }
+}
+
 /* ── Scroll progress (right edge) ───────────────── */
 .scroll-progress-line {
   position: fixed;
-  right: 2rem;
+  right: max(2rem, env(safe-area-inset-right, 0px));
   top: 0;
   width: 2px;
   height: 100vh;
@@ -154,7 +180,7 @@ body {
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 1023px) {
   .scroll-progress-line {
     display: none;
   }

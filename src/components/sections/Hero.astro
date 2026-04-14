@@ -4,12 +4,12 @@ import { APP_STORE_URL, APP_VERSION } from '../../config';
 <section
   id="hero"
   class="relative overflow-x-hidden"
-  style="background: #131313; min-height: calc(100vh - 88px);"
+  style="background: #131313; min-height: calc(100vh - var(--site-nav-height)); min-height: calc(100dvh - var(--site-nav-height));"
   aria-label="Hero"
 >
   <div
-    class="relative z-10 flex w-full min-w-0 max-w-full flex-col items-start justify-center px-5 sm:px-6 md:px-12 pt-24 pb-20 sm:pt-32 sm:pb-24 md:pt-40 md:pb-28 lg:pt-[192px] lg:pb-[128px]"
-    style="min-height: calc(100vh - 88px);"
+    class="relative z-10 flex w-full min-w-0 max-w-full flex-col items-start justify-center pl-[max(1.25rem,env(safe-area-inset-left,0px))] pr-[max(1.25rem,env(safe-area-inset-right,0px))] sm:pl-[max(1.5rem,env(safe-area-inset-left,0px))] sm:pr-[max(1.5rem,env(safe-area-inset-right,0px))] md:pl-[max(3rem,env(safe-area-inset-left,0px))] md:pr-[max(3rem,env(safe-area-inset-right,0px))] pt-24 pb-20 sm:pt-32 sm:pb-24 md:pt-40 md:pb-28 lg:pt-[192px] lg:pb-[128px]"
+    style="min-height: calc(100vh - var(--site-nav-height)); min-height: calc(100dvh - var(--site-nav-height));"
   >
     <h1
       class="hero-in w-full min-w-0 max-w-full font-black uppercase text-white text-balance mb-6 sm:mb-8"
@@ -25,12 +25,12 @@ import { APP_STORE_URL, APP_VERSION } from '../../config';
       The Planets&rsquo; Language
     </p>
 
-    <div class="hero-in hero-in-delay-2 flex flex-wrap items-center gap-6">
+    <div class="hero-in hero-in-delay-2 flex w-full min-w-0 flex-col items-stretch sm:flex-row sm:items-center gap-4 sm:gap-6">
       <a
         href={APP_STORE_URL}
         target="_blank"
         rel="noopener noreferrer"
-        class="badge-appstore shrink-0"
+        class="badge-appstore inline-flex shrink-0 self-start"
         aria-label="Download AstrologyX on the App Store"
       >
         <img
@@ -42,15 +42,6 @@ import { APP_STORE_URL, APP_VERSION } from '../../config';
           class="h-14 w-auto max-w-[min(100%,200px)]"
         />
       </a>
-      <div
-        class="flex min-h-14 items-center gap-4 border-l pl-6"
-        style="border-color: rgba(71, 71, 71, 0.3);"
-      >
-        <p class="font-mono text-xs leading-4" style="color: #c6c6c6;">
-          VERSION {APP_VERSION}
-        </p>
-        <p class="font-mono text-xs leading-4 text-white">READY FOR DOWNLOAD</p>
-      </div>
     </div>
   </div>
 </section>

@@ -8,12 +8,12 @@ const VIDEO_HEIGHT = 1080;
 ---
 <section
   id="app-showcase"
-  class="bg-white overflow-hidden py-24 md:py-32"
+  class="min-w-0 bg-white overflow-x-hidden py-24 md:py-32"
   aria-label="App showcase"
 >
-  <div class="text-center mb-16 md:mb-24 px-6 max-w-6xl mx-auto w-full min-w-0">
+  <div class="text-center mb-16 lg:mb-24 px-6 max-w-6xl mx-auto w-full min-w-0">
     <h2
-      class="text-black text-4xl md:text-6xl font-black uppercase tracking-tighter mb-4 md:whitespace-nowrap"
+      class="text-black text-4xl lg:text-5xl xl:text-6xl font-black uppercase tracking-tighter mb-4 text-balance xl:whitespace-nowrap break-words"
     >
       Personalized horoscope
     </h2>
@@ -25,9 +25,9 @@ const VIDEO_HEIGHT = 1080;
   </div>
 
   <div
-    class="relative w-full max-w-6xl mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-2 items-center gap-16 md:gap-24"
+    class="relative w-full min-w-0 max-w-6xl mx-auto px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-2 items-center gap-16 lg:gap-24"
   >
-    <div class="order-2 md:order-1 flex justify-center">
+    <div class="order-2 lg:order-1 flex justify-center">
       <div
         class="relative w-full max-w-[min(100%,320px)] min-h-0 overflow-hidden"
         style={`aspect-ratio: ${VIDEO_WIDTH} / ${VIDEO_HEIGHT};`}
@@ -57,12 +57,12 @@ const VIDEO_HEIGHT = 1080;
       </div>
     </div>
 
-    <div class="order-1 md:order-2 flex flex-col gap-11 md:gap-12 text-left">
+    <div class="order-1 lg:order-2 flex flex-col gap-11 lg:gap-12 text-left min-w-0">
       <div class="space-y-4 reveal" id="showcase-m1">
         <span class="text-black font-mono text-xs px-2 py-1 border border-black/20 inline-block uppercase"
           >Module 01</span
         >
-        <h3 class="text-3xl md:text-4xl font-black text-black uppercase tracking-tight">
+        <h3 class="text-2xl sm:text-3xl lg:text-4xl font-black text-black uppercase tracking-tight text-balance break-words">
           Individually calculated
         </h3>
         <p class="leading-relaxed text-neutral-600">
@@ -75,7 +75,7 @@ const VIDEO_HEIGHT = 1080;
         <span class="text-black font-mono text-xs px-2 py-1 border border-black/20 inline-block uppercase"
           >Module 02</span
         >
-        <h3 class="text-3xl md:text-4xl font-black text-black uppercase tracking-tight">
+        <h3 class="text-2xl sm:text-3xl lg:text-4xl font-black text-black uppercase tracking-tight text-balance break-words">
           Interpretations with real depth
         </h3>
         <p class="leading-relaxed text-neutral-600">
@@ -86,7 +86,7 @@ const VIDEO_HEIGHT = 1080;
         <span class="text-black font-mono text-xs px-2 py-1 border border-black/20 inline-block uppercase"
           >Module 03</span
         >
-        <h3 class="text-3xl md:text-4xl font-black text-black uppercase tracking-tight">
+        <h3 class="text-2xl sm:text-3xl lg:text-4xl font-black text-black uppercase tracking-tight text-balance break-words">
           All areas of life
         </h3>
         <p class="leading-relaxed text-neutral-600">

@@ -13,8 +13,8 @@ const rawHtml = readFileSync(resolve('privacyPolicy.html'), 'utf-8');
 >
   <div class="min-h-screen bg-white">
     <!-- Simple top bar instead of transparent nav for legal pages -->
-    <header class="border-b border-gray-200 h-16 flex items-center px-6">
-      <div class="max-w-3xl mx-auto w-full flex items-center justify-between">
+    <header class="border-b border-gray-200 min-h-16 flex items-center px-6 py-3 sm:py-0">
+      <div class="max-w-3xl mx-auto w-full min-w-0 flex flex-wrap items-center justify-between gap-3">
         <a href="/" class="font-black text-black text-sm tracking-tight">AstrologyX</a>
         <a href="/" class="text-xs text-gray-500 hover:text-black transition-colors">← Back to home</a>
       </div>

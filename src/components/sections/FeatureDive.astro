@@ -56,17 +56,17 @@ const blocks: Block[] = [
     <section
       id={i === 0 ? 'birth-chart' : undefined}
       class:list={[
-        'grid grid-cols-1 md:grid-cols-2 border-b border-white/[0.04]',
+        'grid grid-cols-1 lg:grid-cols-2 border-b border-white/[0.04]',
         i === blocks.length - 1 && 'border-b-0',
       ]}
     >
       {imageSide === 'right' ? (
         <>
           <div
-            class="p-10 md:p-24 flex flex-col justify-center items-start md:border-r border-white/[0.04] min-h-[280px] md:min-h-[640px]"
+            class="order-2 lg:order-1 min-w-0 p-10 lg:p-24 flex flex-col justify-center items-start lg:border-r border-white/[0.04] min-h-[280px] lg:min-h-[640px]"
             style="background: #131313;"
           >
-            <h2 class="text-4xl md:text-6xl font-black uppercase text-white mb-8 leading-[0.95] tracking-tight">
+            <h2 class="text-2xl sm:text-4xl lg:text-6xl font-black uppercase text-white mb-8 leading-[0.95] tracking-tight text-balance break-words">
               {headlineLines ? (
                 <>
                   <span class="block whitespace-pre-wrap">{headlineLines[0]}</span>
@@ -76,7 +76,7 @@ const blocks: Block[] = [
                 headline
               )}
             </h2>
-            <div class="text-[#c6c6c6] text-lg md:text-xl leading-relaxed mb-12 max-w-xl space-y-0">
+            <div class="text-[#c6c6c6] text-lg lg:text-xl leading-relaxed mb-12 max-w-xl space-y-0">
               {paragraphs.map((p) => (
                 <p class="mb-0 last:mb-0 leading-[1.625]">{p}</p>
               ))}
@@ -91,7 +91,7 @@ const blocks: Block[] = [
             </a>
           </div>
           <div
-            class="min-h-[280px] md:min-h-[640px] flex items-center justify-center p-8 md:p-12 overflow-hidden"
+            class="order-1 lg:order-2 min-w-0 min-h-[280px] lg:min-h-[640px] flex items-center justify-center p-8 lg:p-12 overflow-hidden"
             style="background: #0e0e0e;"
           >
             <Image
@@ -110,7 +110,7 @@ const blocks: Block[] = [
       ) : (
         <>
           <div
-            class="min-h-[280px] md:min-h-[640px] flex items-center justify-center p-8 md:p-12 overflow-hidden"
+            class="order-1 min-w-0 min-h-[280px] lg:min-h-[640px] flex items-center justify-center p-8 lg:p-12 overflow-hidden"
             style="background: #0e0e0e;"
           >
             <Image
@@ -126,10 +126,10 @@ const blocks: Block[] = [
             />
           </div>
           <div
-            class="p-10 md:p-24 flex flex-col justify-center items-start md:border-l border-white/[0.04] min-h-[280px] md:min-h-[640px]"
+            class="order-2 min-w-0 p-10 lg:p-24 flex flex-col justify-center items-start lg:border-l border-white/[0.04] min-h-[280px] lg:min-h-[640px]"
             style="background: #131313;"
           >
-            <h2 class="text-4xl md:text-6xl font-black uppercase text-white mb-8 leading-[0.95] tracking-tight">
+            <h2 class="text-2xl sm:text-4xl lg:text-6xl font-black uppercase text-white mb-8 leading-[0.95] tracking-tight text-balance break-words">
               {headlineLines ? (
                 <>
                   <span class="block whitespace-pre-wrap">{headlineLines[0]}</span>
@@ -139,7 +139,7 @@ const blocks: Block[] = [
                 headline
               )}
             </h2>
-            <div class="text-[#c6c6c6] text-lg md:text-xl leading-relaxed mb-12 max-w-xl space-y-0">
+            <div class="text-[#c6c6c6] text-lg lg:text-xl leading-relaxed mb-12 max-w-xl space-y-0">
               {paragraphs.map((p) => (
                 <p class="mb-0 last:mb-0 leading-[1.625]">{p}</p>
               ))}
