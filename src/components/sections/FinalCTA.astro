@@ -1,0 +1,74 @@
+---
+import { APP_STORE_URL } from '../../config';
+
+const headline = {
+  line1: 'Personal astrology',
+  line2: 'for everyday life',
+} as const;
+---
+<section
+  id="download"
+  class="min-w-0 py-36 md:py-48 pl-[max(1.5rem,env(safe-area-inset-left,0px))] pr-[max(1.5rem,env(safe-area-inset-right,0px))] md:pl-12 md:pr-12 text-center bg-white"
+  aria-label="Download call to action"
+>
+  <div class="max-w-5xl mx-auto min-w-0 reveal" id="cta-block">
+    <h2
+      class="font-black uppercase tracking-tighter leading-[0.95] mb-12 md:mb-16 text-black text-balance"
+      style="font-size: clamp(3rem, 6vw + 1.5rem, 6rem);"
+    >
+      <span class="block">{headline.line1}</span>
+      <span class="block">{headline.line2}</span>
+    </h2>
+
+    <div class="flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-16">
+      <div class="hidden lg:flex flex-col items-center gap-4">
+        <div class="border border-black border-solid size-40 flex items-center justify-center shrink-0 p-1">
+          <img
+            src="/img/app-store-qr.png"
+            alt="QR code to open AstrologyX on the App Store"
+            width="152"
+            height="152"
+            loading="lazy"
+            class="w-[152px] h-[152px] max-w-full object-contain"
+          />
+        </div>
+        <p class="font-mono text-[10px] text-black tracking-widest uppercase">Scan to install</p>
+      </div>
+
+      <div class="hidden lg:block h-40 w-px bg-black/10" aria-hidden="true"></div>
+
+      <a
+        href={APP_STORE_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="badge-appstore"
+        aria-label="Download AstrologyX on the App Store"
+      >
+        <img
+          src="/appstore.png"
+          alt="Download on the App Store"
+          width="1558"
+          height="505"
+          loading="lazy"
+          class="h-16 w-auto"
+        />
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  const ctaBlock = document.getElementById('cta-block');
+  if (ctaBlock) {
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          ctaBlock.classList.add('visible');
+          obs.unobserve(ctaBlock);
+        }
+      },
+      { threshold: 0.15 }
+    );
+    obs.observe(ctaBlock);
+  }
+</script>

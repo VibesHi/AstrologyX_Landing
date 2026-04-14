@@ -1,0 +1,20 @@
+# Cloudflare Pages response headers
+
+# Hashed assets — cache 1 year
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Images
+/img/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# HTML — revalidate
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Security headers for all routes
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()

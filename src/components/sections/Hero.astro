@@ -1,0 +1,72 @@
+---
+import { APP_STORE_URL } from '../../config';
+---
+<section
+  id="hero"
+  class="relative overflow-x-hidden"
+  style="background: #131313; min-height: calc(100vh - var(--site-nav-height)); min-height: calc(100dvh - var(--site-nav-height));"
+  aria-label="Hero"
+>
+  <div
+    class="relative z-10 flex w-full min-w-0 max-w-full flex-col items-start justify-center pl-[max(1.25rem,env(safe-area-inset-left,0px))] pr-[max(1.25rem,env(safe-area-inset-right,0px))] sm:pl-[max(1.5rem,env(safe-area-inset-left,0px))] sm:pr-[max(1.5rem,env(safe-area-inset-right,0px))] md:pl-[max(3rem,env(safe-area-inset-left,0px))] md:pr-[max(3rem,env(safe-area-inset-right,0px))] pt-24 pb-20 sm:pt-32 sm:pb-24 md:pt-40 md:pb-28 lg:pt-[192px] lg:pb-[128px]"
+    style="min-height: calc(100vh - var(--site-nav-height)); min-height: calc(100dvh - var(--site-nav-height));"
+  >
+    <h1
+      class="hero-in w-full min-w-0 max-w-full font-black uppercase text-white text-balance mb-6 sm:mb-8"
+      style="font-size: var(--text-hero-mega); line-height: 0.9; letter-spacing: -0.045em;"
+    >
+      ASTROLOGYX
+    </h1>
+
+    <h2
+      class="hero-in hero-in-delay-1 max-w-[42rem] mb-10 sm:mb-12 text-[clamp(1.125rem,0.95rem+1.1vw,2.25rem)] md:text-4xl font-light leading-snug"
+      style="color: #c6c6c6;"
+    >
+      The astrology app for personal everyday guidance
+    </h2>
+
+    <div class="hero-in hero-in-delay-2 flex w-full min-w-0 flex-col items-stretch sm:flex-row sm:items-center gap-4 sm:gap-6">
+      <a
+        href={APP_STORE_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="badge-appstore inline-flex shrink-0 self-start"
+        aria-label="Download AstrologyX on the App Store"
+      >
+        <img
+          src="/appstore.png"
+          alt=""
+          width="1558"
+          height="505"
+          fetchpriority="high"
+          class="h-14 w-auto max-w-[min(100%,200px)]"
+        />
+      </a>
+    </div>
+  </div>
+
+  <a
+    href="#benefits"
+    class="hero-in hero-in-delay-3 scroll-chevron motion-reduce:animate-none absolute bottom-[max(1.5rem,env(safe-area-inset-bottom,0px))] left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-1 text-[#5e5e5e] transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white/40"
+    aria-label="Scroll to next section"
+  >
+    <span class="sr-only">Scroll to continue</span>
+    <svg
+      width="22"
+      height="22"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      class="opacity-90"
+      aria-hidden="true"
+    >
+      <path
+        d="M6 9l6 6 6-6"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  </a>
+</section>

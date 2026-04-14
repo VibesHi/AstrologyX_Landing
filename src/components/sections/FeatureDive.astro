@@ -1,0 +1,164 @@
+---
+import { APP_STORE_URL } from '../../config';
+
+type Block = {
+  headline?: string;
+  headlineLines?: readonly [string, string];
+  paragraphs: readonly string[];
+  /** Served from /public */
+  publicImage: { src: string; width: number; height: number };
+  alt: string;
+  imageSide: 'left' | 'right';
+  cta: string;
+  imageClass?: string;
+};
+
+const blocks: Block[] = [
+  {
+    headlineLines: ['Understand', 'BIRTH CHART'] as const,
+    paragraphs: [
+      'Your Birth Chart is the foundation of real astrology — a unique map of the sky at the moment you were born. It explains your personality, emotional patterns, strengths, challenges, and the structure of who you are.',
+    ],
+    publicImage: { src: '/birthChartImage.png', width: 444, height: 444 },
+    alt: 'Minimalist circular birth chart grid on dark background',
+    imageSide: 'right',
+    cta: 'Get ur chart',
+  },
+  {
+    headline: 'decode planetary motion',
+    paragraphs: [
+      "Powered by NASA's star-position data and our own proprietary tech, we create transit horoscopes with exceptional accuracy—made just for you.",
+    ],
+    publicImage: { src: '/planetaryMotionImage.png', width: 432, height: 432 },
+    alt: 'Abstract orbital visualization on dark background',
+    imageSide: 'left',
+    cta: 'try it now',
+  },
+  {
+    headline: 'real-time insights',
+    paragraphs: [
+      'Your 2026 astro readings have officially arrived in the app, complete with fresh insights, predictions, and personalized guidance for the year ahead.',
+    ],
+    publicImage: { src: '/insightsImage.png', width: 1200, height: 1200 },
+    alt: 'Network of insight nodes',
+    imageSide: 'right',
+    cta: 'See insights',
+    imageClass: 'opacity-95 grayscale-0',
+  },
+];
+---
+<div id="features" aria-label="Feature details">
+  {blocks.map(({ headline, headlineLines, paragraphs, publicImage, alt, imageSide, cta, imageClass }, i) => (
+    <section
+      id={i === 0 ? 'birth-chart' : undefined}
+      class:list={[
+        'grid grid-cols-1 lg:grid-cols-2 border-b border-white/[0.04]',
+        i === blocks.length - 1 && 'border-b-0',
+      ]}
+    >
+      {imageSide === 'right' ? (
+        <>
+          <div
+            class="order-2 lg:order-1 min-w-0 p-10 lg:p-24 flex flex-col justify-center items-start lg:border-r border-white/[0.04] min-h-[280px] lg:min-h-[640px]"
+            style="background: #131313;"
+          >
+            <h2 class="text-2xl sm:text-4xl lg:text-6xl font-black uppercase text-white mb-8 leading-[0.95] tracking-tight text-balance break-words">
+              {headlineLines ? (
+                <>
+                  <span class="block whitespace-pre-wrap">{headlineLines[0]}</span>
+                  <span class="block whitespace-pre-wrap">{headlineLines[1]}</span>
+                </>
+              ) : (
+                headline
+              )}
+            </h2>
+            <div class="text-[#c6c6c6] text-lg lg:text-xl leading-relaxed mb-12 max-w-xl space-y-0">
+              {paragraphs.map((p) => (
+                <p class="mb-0 last:mb-0 leading-[1.625]">{p}</p>
+              ))}
+            </div>
+            <a
+              href={APP_STORE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="border border-white text-white px-8 py-4 uppercase font-bold text-sm tracking-widest hover:bg-white hover:text-black transition-colors"
+            >
+              {cta}
+            </a>
+          </div>
+          <div
+            class="order-1 lg:order-2 min-w-0 min-h-[280px] lg:min-h-[640px] flex items-center justify-center overflow-hidden p-6"
+            style="background: #000000"
+          >
+            <div
+              class="relative mx-auto w-full max-w-[min(100%,min(90vw,28rem))] aspect-square min-h-0"
+            >
+              <div class="absolute inset-6 flex min-h-0 items-center justify-center">
+                <img
+                  src={publicImage.src}
+                  alt={alt}
+                  width={publicImage.width}
+                  height={publicImage.height}
+                  loading="lazy"
+                  decoding="async"
+                  class:list={['h-full w-full object-contain mix-blend-normal', imageClass ?? '']}
+                />
+              </div>
+            </div>
+          </div>
+        </>
+      ) : (
+        <>
+          <div
+            class="order-1 min-w-0 min-h-[280px] lg:min-h-[640px] flex items-center justify-center overflow-hidden p-6"
+            style="background: #000000"
+          >
+            <div
+              class="relative mx-auto w-full max-w-[min(100%,min(90vw,28rem))] aspect-square min-h-0"
+            >
+              <div class="absolute inset-6 flex min-h-0 items-center justify-center">
+                <img
+                  src={publicImage.src}
+                  alt={alt}
+                  width={publicImage.width}
+                  height={publicImage.height}
+                  loading="lazy"
+                  decoding="async"
+                  class:list={['h-full w-full object-contain mix-blend-normal', imageClass ?? '']}
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            class="order-2 min-w-0 p-10 lg:p-24 flex flex-col justify-center items-start lg:border-l border-white/[0.04] min-h-[280px] lg:min-h-[640px]"
+            style="background: #131313;"
+          >
+            <h2 class="text-2xl sm:text-4xl lg:text-6xl font-black uppercase text-white mb-8 leading-[0.95] tracking-tight text-balance break-words">
+              {headlineLines ? (
+                <>
+                  <span class="block whitespace-pre-wrap">{headlineLines[0]}</span>
+                  <span class="block whitespace-pre-wrap">{headlineLines[1]}</span>
+                </>
+              ) : (
+                headline
+              )}
+            </h2>
+            <div class="text-[#c6c6c6] text-lg lg:text-xl leading-relaxed mb-12 max-w-xl space-y-0">
+              {paragraphs.map((p) => (
+                <p class="mb-0 last:mb-0 leading-[1.625]">{p}</p>
+              ))}
+            </div>
+            <a
+              href={APP_STORE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="border border-white text-white px-8 py-4 uppercase font-bold text-sm tracking-widest hover:bg-white hover:text-black transition-colors"
+            >
+              {cta}
+            </a>
+          </div>
+        </>
+      )}
+    </section>
+  ))}
+</div>
