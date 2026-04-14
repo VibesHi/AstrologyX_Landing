@@ -1,5 +1,10 @@
 ---
 import { APP_STORE_URL } from '../../config';
+
+const headline = {
+  line1: 'Personal astrology',
+  line2: 'for everyday life',
+} as const;
 ---
 <section
   id="download"
@@ -8,11 +13,11 @@ import { APP_STORE_URL } from '../../config';
 >
   <div class="max-w-5xl mx-auto min-w-0 reveal" id="cta-block">
     <h2
-      class="font-black uppercase tracking-tighter leading-none mb-12 md:mb-16 text-black"
+      class="font-black uppercase tracking-tighter leading-[0.95] mb-12 md:mb-16 text-black text-balance"
       style="font-size: clamp(3rem, 6vw + 1.5rem, 6rem);"
     >
-      <span class="block">Ascend the</span>
-      <span class="block">grid</span>
+      <span class="block">{headline.line1}</span>
+      <span class="block">{headline.line2}</span>
     </h2>
 
     <div class="flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-16">
