@@ -1,0 +1,163 @@
+---
+const VIDEO_WEBM = '/astrologyx__video_preview_web.webm';
+const VIDEO_MP4 = '/astrologyx__video_preview_web.mp4';
+const VIDEO_POSTER = '/astrologyx__video_preview_poster.webp';
+/** Native pixel size of the preview MP4; keep in sync if the asset is replaced. */
+const VIDEO_WIDTH = 604;
+const VIDEO_HEIGHT = 1080;
+---
+<section
+  id="app-showcase"
+  class="min-w-0 bg-white overflow-x-hidden py-24 md:py-32"
+  aria-label="App showcase"
+>
+  <div class="text-center mb-16 lg:mb-24 px-6 max-w-6xl mx-auto w-full min-w-0">
+    <h2
+      class="text-black text-4xl lg:text-5xl xl:text-6xl font-black uppercase tracking-tighter mb-4 text-balance xl:whitespace-nowrap break-words"
+    >
+      Personalized horoscope
+    </h2>
+    <p
+      class="text-sm md:text-base uppercase tracking-[0.15em] md:tracking-[0.2em] font-mono text-neutral-500 max-w-3xl mx-auto leading-snug"
+    >
+      Based on your Birth Chart and real-time planetary transits
+    </p>
+  </div>
+
+  <div
+    class="relative w-full min-w-0 max-w-6xl mx-auto px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-2 items-center gap-16 lg:gap-24"
+  >
+    <div class="order-2 lg:order-1 flex justify-center">
+      <div
+        class="relative w-full max-w-[min(100%,320px)] min-h-0 overflow-hidden rounded-3xl"
+        style={`aspect-ratio: ${VIDEO_WIDTH} / ${VIDEO_HEIGHT};`}
+      >
+        <video
+          id="showcase-preview-video"
+          class="absolute inset-0 h-full w-full min-h-0 rounded-3xl object-cover motion-reduce:hidden"
+          preload="none"
+          muted
+          playsinline
+          loop
+          poster={VIDEO_POSTER}
+          aria-hidden="true"
+          tabindex="-1"
+        >
+        </video>
+        <img
+          src={VIDEO_POSTER}
+          alt=""
+          width={VIDEO_WIDTH}
+          height={VIDEO_HEIGHT}
+          class="absolute inset-0 hidden h-full w-full rounded-3xl object-cover motion-reduce:block"
+          loading="lazy"
+          decoding="async"
+          fetchpriority="low"
+        />
+      </div>
+    </div>
+
+    <div class="order-1 lg:order-2 flex flex-col gap-11 lg:gap-12 text-left min-w-0">
+      <div class="space-y-4 reveal" id="showcase-m1">
+        <span class="text-black font-mono text-xs px-2 py-1 border border-black/20 inline-block uppercase"
+          >Module 01</span
+        >
+        <h3 class="text-2xl sm:text-3xl lg:text-4xl font-black text-black uppercase tracking-tight text-balance break-words">
+          Individually calculated
+        </h3>
+        <p class="leading-relaxed text-neutral-600">
+          Every day you receive a unique horoscope calculated from your Birth Chart, planetary
+          transits, aspects, and your rising sign — giving you clear, personalized insights into your
+          life.
+        </p>
+      </div>
+      <div class="space-y-4 reveal" id="showcase-m2">
+        <span class="text-black font-mono text-xs px-2 py-1 border border-black/20 inline-block uppercase"
+          >Module 02</span
+        >
+        <h3 class="text-2xl sm:text-3xl lg:text-4xl font-black text-black uppercase tracking-tight text-balance break-words">
+          Interpretations with real depth
+        </h3>
+        <p class="leading-relaxed text-neutral-600">
+          Read a quick summary or open a full explanation with clear, astrological insights.
+        </p>
+      </div>
+      <div class="space-y-4 reveal" id="showcase-m3">
+        <span class="text-black font-mono text-xs px-2 py-1 border border-black/20 inline-block uppercase"
+          >Module 03</span
+        >
+        <h3 class="text-2xl sm:text-3xl lg:text-4xl font-black text-black uppercase tracking-tight text-balance break-words">
+          All areas of life
+        </h3>
+        <p class="leading-relaxed text-neutral-600">
+          Daily guidance about relationships, finances, communication, energy, emotions, and the key
+          themes shaping your day.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script define:vars={{ VIDEO_WEBM, VIDEO_MP4 }}>
+  const video = document.getElementById('showcase-preview-video');
+  const section = document.getElementById('app-showcase');
+
+  if (video && section) {
+    const startPlayback = () => {
+      if (video.dataset.ready) return;
+      video.dataset.ready = '1';
+      const s1 = document.createElement('source');
+      s1.src = VIDEO_WEBM;
+      s1.type = 'video/webm';
+      const s2 = document.createElement('source');
+      s2.src = VIDEO_MP4;
+      s2.type = 'video/mp4';
+      video.appendChild(s1);
+      video.appendChild(s2);
+      video.load();
+      video.play().catch(() => {});
+    };
+
+    const mqReduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    const onReduceChange = () => {
+      if (!mqReduce.matches) return;
+      video.pause();
+      video.querySelectorAll('source').forEach((s) => s.remove());
+      video.removeAttribute('src');
+      video.load();
+      video.dataset.ready = '';
+    };
+    mqReduce.addEventListener('change', onReduceChange);
+
+    if (!mqReduce.matches) {
+      const io = new IntersectionObserver(
+        (entries) => {
+          for (const e of entries) {
+            if (!e.isIntersecting || mqReduce.matches) continue;
+            startPlayback();
+            io.disconnect();
+          }
+        },
+        { rootMargin: '120px 0px', threshold: 0.01 }
+      );
+      io.observe(section);
+    }
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.12 }
+  );
+  ['showcase-m1', 'showcase-m2', 'showcase-m3'].forEach((id) => {
+    const el = document.getElementById(id);
+    if (el) observer.observe(el);
+  });
+</script>

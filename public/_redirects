@@ -1,0 +1,4 @@
+# Backward-compatible redirects for old HTML file paths
+/privacyPolicy.html   /privacy-policy/   301
+/termsOfUse.html      /terms-of-use/     301
+/404.html             /                  301

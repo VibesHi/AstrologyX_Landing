@@ -1,0 +1,177 @@
+---
+import { APP_STORE_URL } from '../config';
+
+const sectionLinks = [
+  { href: '#benefits', label: 'Horoscope', active: true },
+  { href: '#app-showcase', label: 'Transits', active: false },
+  { href: '#birth-chart', label: 'Birth Chart', active: false },
+] as const;
+---
+<header
+  id="site-nav"
+  class="fixed top-0 left-0 right-0 z-40 flex min-w-0 max-w-full items-center justify-between gap-2 sm:gap-3 pl-[max(1.25rem,env(safe-area-inset-left,0px))] pr-[max(1.25rem,env(safe-area-inset-right,0px))] lg:pl-[max(3rem,env(safe-area-inset-left,0px))] lg:pr-[max(3rem,env(safe-area-inset-right,0px))] py-5 sm:py-6 bg-[#131313]/80 backdrop-blur-xl border-b border-white/10"
+>
+  <a
+    href="/"
+    class="min-w-0 shrink text-base font-black tracking-tighter text-white uppercase select-none sm:text-xl"
+  >
+    AstrologyX
+  </a>
+
+  <nav
+    class="hidden lg:flex gap-6 xl:gap-10 items-center justify-center flex-1 min-w-0"
+    aria-label="Section shortcuts"
+  >
+    {sectionLinks.map(({ href, label, active }) => (
+      <a
+        class:list={[
+          'text-sm uppercase tracking-wide shrink-0 pb-1 border-b-2 transition-colors',
+          active
+            ? 'text-white font-bold border-white'
+            : 'text-[#5E5E5E] hover:text-white border-transparent font-normal',
+        ]}
+        href={href}
+      >
+        {label}
+      </a>
+    ))}
+  </nav>
+
+  <div class="flex shrink-0 items-center gap-2 sm:gap-3">
+    <a
+      href={APP_STORE_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-flex min-h-11 items-center justify-center bg-white text-black px-4 py-2 text-xs font-bold uppercase tracking-wide hover:bg-[#353535] hover:text-white transition-all duration-300 sm:px-6 sm:text-sm"
+    >
+      Download
+    </a>
+
+    <button
+      type="button"
+      id="mobile-nav-toggle"
+      class="lg:hidden inline-flex h-11 min-w-[2.75rem] items-center justify-center rounded border border-white/20 text-white hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+      aria-expanded="false"
+      aria-controls="mobile-nav-panel"
+      aria-label="Open menu"
+    >
+      <span class="sr-only">Menu</span>
+      <svg
+        class="pointer-events-none h-5 w-5"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        aria-hidden="true"
+      >
+        <path id="mobile-nav-icon-open" class="mobile-nav-icon-open" stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16" />
+        <path id="mobile-nav-icon-close" class="mobile-nav-icon-close hidden" stroke-linecap="round" d="M6 6l12 12M18 6L6 18" />
+      </svg>
+    </button>
+  </div>
+</header>
+
+<div
+  id="mobile-nav-panel"
+  class="lg:hidden fixed left-0 right-0 z-30 hidden max-h-[min(70vh,calc(100dvh-var(--site-nav-height)))] overflow-y-auto border-b border-white/10 bg-[#131313]/95 backdrop-blur-xl shadow-lg"
+  style="top: var(--site-nav-height);"
+  aria-hidden="true"
+>
+  <nav class="flex flex-col px-[max(1.25rem,env(safe-area-inset-left,0px))] py-3 pb-[max(1rem,env(safe-area-inset-bottom,0px))] pr-[max(1.25rem,env(safe-area-inset-right,0px))]" aria-label="Section shortcuts">
+    {sectionLinks.map(({ href, label, active }) => (
+      <a
+        class:list={[
+          'min-h-12 flex items-center text-base uppercase tracking-wide border-b border-white/[0.06] last:border-b-0 py-3 transition-colors',
+          active ? 'text-white font-bold' : 'text-[#c6c6c6] font-medium active:text-white',
+        ]}
+        href={href}
+      >
+        {label}
+      </a>
+    ))}
+  </nav>
+</div>
+
+<div class="shrink-0" style="height: var(--site-nav-height);" aria-hidden="true"></div>
+
+<script>
+  const toggle = document.getElementById('mobile-nav-toggle');
+  const panel = document.getElementById('mobile-nav-panel');
+  const header = document.getElementById('site-nav');
+  const iconOpen = document.querySelector('.mobile-nav-icon-open');
+  const iconClose = document.querySelector('.mobile-nav-icon-close');
+
+  if (!toggle || !panel || !(toggle instanceof HTMLButtonElement)) {
+    // SSR or missing DOM
+  } else {
+    const getFocusable = () =>
+      Array.from(
+        panel.querySelectorAll(
+          'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        )
+      ).filter(
+        (el) =>
+          el instanceof HTMLElement &&
+          !el.hasAttribute('hidden') &&
+          el.offsetParent !== null
+      );
+
+    let lastFocus: HTMLElement | null = null;
+
+    const setOpen = (open: boolean) => {
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      panel.setAttribute('aria-hidden', open ? 'false' : 'true');
+      panel.classList.toggle('hidden', !open);
+      iconOpen?.classList.toggle('hidden', open);
+      iconClose?.classList.toggle('hidden', !open);
+      document.body.style.overflow = open ? 'hidden' : '';
+
+      if (open) {
+        lastFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+        const f = getFocusable();
+        f[0]?.focus();
+      } else {
+        lastFocus?.focus();
+        lastFocus = null;
+      }
+    };
+
+    const isOpen = () => toggle.getAttribute('aria-expanded') === 'true';
+
+    toggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      setOpen(!isOpen());
+    });
+
+    panel.querySelectorAll('a[href^="#"]').forEach((a) => {
+      a.addEventListener('click', () => setOpen(false));
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!isOpen()) return;
+      const t = e.target as Node;
+      if (panel.contains(t) || header?.contains(t)) return;
+      setOpen(false);
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (!isOpen()) return;
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        setOpen(false);
+        return;
+      }
+      if (e.key !== 'Tab') return;
+      const list = getFocusable();
+      if (list.length === 0) return;
+      const first = list[0];
+      const last = list[list.length - 1];
+      if (e.shiftKey) return;
+      if (document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    });
+  }
+</script>
