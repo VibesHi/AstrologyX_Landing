@@ -1,4 +1,6 @@
 ---
+import { LEGAL_NAME } from '../config';
+
 const year = new Date().getFullYear();
 ---
 <footer class="w-full min-w-0 bg-[#0E0E0E] flex flex-col pl-[max(1.5rem,env(safe-area-inset-left,0px))] pr-[max(1.5rem,env(safe-area-inset-right,0px))] lg:pl-[max(3rem,env(safe-area-inset-left,0px))] lg:pr-[max(3rem,env(safe-area-inset-right,0px))] py-24 lg:py-32 gap-16 border-t border-white/[0.04]">
@@ -38,7 +40,8 @@ const year = new Date().getFullYear();
     </div>
   </div>
 
-  <div class="w-full border-t border-white/[0.04] pt-16">
+  <div class="w-full border-t border-white/[0.04] pt-16 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
     <p class="text-left text-[#5E5E5E] text-xs font-mono">© {year} AstrologyX. All rights reserved.</p>
+    <p class="text-left text-[#5E5E5E] text-xs font-mono">Published by {LEGAL_NAME}.</p>
   </div>
 </footer>
