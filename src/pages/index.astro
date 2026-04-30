@@ -100,12 +100,73 @@ const breadcrumbSchema = {
     },
   ],
 };
+
+const speakableSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  '@id': `${SITE_URL}/#webpage`,
+  url: SITE_URL + '/',
+  name: 'AstrologyX: Birth Chart & Daily Horoscope App for iPhone',
+  isPartOf: { '@id': `${SITE_URL}/#website` },
+  primaryImageOfPage: { '@type': 'ImageObject', url: `${SITE_URL}/og-image.png` },
+  speakable: {
+    '@type': 'SpeakableSpecification',
+    cssSelector: ['#overview p', '#faq dt'],
+  },
+};
+
+const howToSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'HowTo',
+  name: 'How to read your birth chart in AstrologyX',
+  description:
+    'Step-by-step guide to opening and interpreting your birth chart in the AstrologyX iPhone app.',
+  totalTime: 'PT5M',
+  estimatedCost: { '@type': 'MonetaryAmount', currency: 'USD', value: '0' },
+  supply: [{ '@type': 'HowToSupply', name: 'iPhone running iOS 16 or later' }],
+  tool: [{ '@type': 'HowToTool', name: 'AstrologyX app' }],
+  step: [
+    {
+      '@type': 'HowToStep',
+      position: 1,
+      name: 'Install AstrologyX',
+      text: 'Download AstrologyX from the App Store and open it on your iPhone.',
+      url: APP_STORE_URL,
+    },
+    {
+      '@type': 'HowToStep',
+      position: 2,
+      name: 'Enter your birth details',
+      text: 'Enter your full birth date, exact birth time, and birth location. AstrologyX uses these to calculate your personalized birth chart.',
+    },
+    {
+      '@type': 'HowToStep',
+      position: 3,
+      name: 'Open your birth chart',
+      text: 'Open the Birth Chart tab to view your natal chart wheel — showing your sun, moon, rising sign, and planetary placements across the twelve houses.',
+    },
+    {
+      '@type': 'HowToStep',
+      position: 4,
+      name: 'Tap any planet, sign, or house',
+      text: 'Tap any planet, sign, or house in the chart to see a clear, beginner-friendly interpretation of what it means for your personality and life themes.',
+    },
+    {
+      '@type': 'HowToStep',
+      position: 5,
+      name: 'Follow daily transits',
+      text: 'Use the daily horoscope and transit feed to see how current planetary movements interact with your specific birth chart positions.',
+    },
+  ],
+};
 ---
 <BaseLayout>
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify(softwareAppSchema)} />
     <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
     <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(speakableSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(howToSchema)} />
   </Fragment>
   <Nav />
   <main id="main-content" class="min-w-0">
