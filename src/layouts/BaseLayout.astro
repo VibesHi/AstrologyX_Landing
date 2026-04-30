@@ -107,6 +107,10 @@ const organizationSchema = {
     <meta name="apple-mobile-web-app-title" content={APP_NAME} />
     <meta name="format-detection" content="telephone=no" />
 
+    <!-- App Store CTAs trigger DNS lookup + connection on click; warm them up early. -->
+    <link rel="dns-prefetch" href="https://apps.apple.com" />
+    <link rel="preconnect" href="https://apps.apple.com" crossorigin />
+
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
