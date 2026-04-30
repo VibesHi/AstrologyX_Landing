@@ -7,7 +7,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "generate:qr": "bun scripts/generate-app-store-qr.mjs"
+    "generate:qr": "bun scripts/generate-app-store-qr.mjs",
+    "validate:seo": "bun scripts/validate-seo.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.2",
