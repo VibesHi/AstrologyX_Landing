@@ -1,0 +1,76 @@
+# AstrologyX — Full Content Snapshot
+
+> AstrologyX is a precision astrology app for iPhone, published by Vibes LLC. It generates personalized daily horoscopes, full birth chart readings, and real-time planetary transit insights — all calculated from NASA ephemeris data and tailored to each user's unique chart.
+
+## Product facts
+
+| Field | Value |
+| --- | --- |
+| Name | AstrologyX |
+| Publisher | Vibes LLC |
+| Platform | iOS 16+ (iPhone) |
+| Languages | English, Russian |
+| Price | Free with optional in-app purchase |
+| Current version | 1.23.4 |
+| Data source | NASA ephemeris / star-position data |
+| Category | Lifestyle / Astrology |
+| Website | https://astrologyx.com |
+| App Store | https://apps.apple.com/app/id1449148271 |
+
+## Core features
+
+### Daily horoscopes
+Every horoscope in AstrologyX is generated using real astrological data — no generic sun-sign predictions. Each reading is tailored specifically to the user's birth chart and current planetary influences, including transits, aspects, and rising sign.
+
+### Birth chart
+A birth chart (natal chart) in AstrologyX is a unique map of the sky at the exact moment and location the user was born. The app reads the chart to reveal personality, emotional patterns, strengths, life themes, and uses it as the foundation for every personalized horoscope and transit reading. Users can read a quick summary or open a full explanation with clear, beginner-friendly astrological insights.
+
+### Planetary transits
+AstrologyX provides daily guidance about relationships, finances, communication, energy, emotions, and the key themes shaping each day — all computed from real-time planetary positions and the user's natal chart. Powered by NASA's star-position data combined with proprietary astrological calculation technology.
+
+### Synastry compatibility
+Synastry in AstrologyX compares two birth charts to reveal the astrological dynamics between two people. It covers communication style, emotional connection, attraction, and long-term relationship potential.
+
+## Positioning
+
+AstrologyX focuses on precision, depth, and clarity. While other apps offer generic interpretations, AstrologyX emphasizes:
+
+- NASA-backed real astrological data
+- Daily transit calculations individually computed from each user's birth chart
+- A calm, distraction-free interface built specifically for everyday use on iOS
+
+AstrologyX differs from Co-Star and The Pattern by prioritizing individual calculation precision and clarity of interpretation over personality-archetype framing or social/share features.
+
+## Frequently asked questions
+
+### What is AstrologyX?
+AstrologyX is a precision astrology app for iPhone that provides personalized daily horoscopes, birth chart readings, planetary transit tracking, and synastry compatibility analysis. Every reading is individually calculated from the user's unique birth chart and real-time planetary positions — not generic sun-sign predictions.
+
+### Is AstrologyX free?
+AstrologyX is free to download on the App Store. The app includes core features at no cost, with optional premium content available through in-app purchase.
+
+### How accurate are AstrologyX horoscopes?
+AstrologyX uses NASA star-position data combined with proprietary astrological calculation technology. Unlike generic horoscopes, every prediction is tailored to the user's specific birth chart, planetary transits, aspects, and rising sign — giving precise, personalized daily guidance.
+
+### What is a birth chart in AstrologyX?
+A birth chart (natal chart) in AstrologyX is a unique map of the sky at the exact moment and location the user was born. AstrologyX analyzes the birth chart to reveal personality, emotional patterns, strengths, and life themes, and uses it as the foundation for all personalized horoscopes and transit readings.
+
+### Does AstrologyX use NASA data?
+Yes. AstrologyX is powered by NASA's star-position data alongside proprietary astrological algorithms to calculate real-time planetary positions. This enables highly accurate personalized transit horoscopes generated specifically for each user's birth chart.
+
+### How is AstrologyX different from Co-Star or The Pattern?
+AstrologyX focuses on precision, depth, and clarity. While other apps offer general interpretations, AstrologyX emphasizes NASA-backed real astrological data, daily transit calculations individually computed from the user's birth chart, and a calm, distraction-free interface built specifically for everyday use on iOS.
+
+### Is AstrologyX available on Android?
+AstrologyX is currently available exclusively on iOS. It can be downloaded from the App Store on iPhone.
+
+### What is synastry in AstrologyX?
+Synastry in AstrologyX is a compatibility analysis that compares two birth charts to reveal the astrological dynamics between two people. It covers areas such as communication style, emotional connection, attraction, and long-term relationship potential.
+
+## Canonical sources
+
+- Home: https://astrologyx.com/
+- FAQ: https://astrologyx.com/#faq
+- Privacy policy: https://astrologyx.com/privacy-policy/
+- Terms of use: https://astrologyx.com/terms-of-use/
+- App Store listing: https://apps.apple.com/app/id1449148271

@@ -1,0 +1,36 @@
+# AstrologyX
+
+> AstrologyX is a precision astrology app for iPhone, published by Vibes LLC. It generates personalized daily horoscopes, full birth chart readings, and real-time planetary transit insights — all calculated from NASA ephemeris data and tailored to each user's unique chart.
+
+## At a glance
+
+- Platform: iOS 16+ (iPhone)
+- Languages: English, Russian
+- Price: Free with optional in-app purchase
+- App Store: https://apps.apple.com/app/id1449148271
+- Current version: 1.23.4
+- Publisher: Vibes LLC
+- Data source: NASA ephemeris / star-position data
+
+## Core features
+
+- Personalized daily horoscopes, individually calculated from each user's birth chart and current planetary transits
+- Full birth chart (natal chart) with clear, beginner-friendly interpretations of planets, houses, aspects, and rising sign
+- Real-time planetary transit tracking
+- Synastry compatibility analysis between two birth charts
+
+## Positioning
+
+AstrologyX differs from generic sun-sign horoscope apps by individually calculating every reading from the user's specific birth chart, planetary transits, and aspects. It is positioned as a precise, calm, distraction-free iOS-native astrology tool — designed for everyday personal guidance rather than passive entertainment.
+
+## Canonical pages
+
+- [Home](https://astrologyx.com/): product overview, core features, FAQ
+- [Frequently asked questions](https://astrologyx.com/#faq): what AstrologyX is, accuracy, NASA data, birth charts, synastry, comparison to Co-Star and The Pattern, Android availability
+- [Privacy policy](https://astrologyx.com/privacy-policy/)
+- [Terms of use](https://astrologyx.com/terms-of-use/)
+- [App Store listing](https://apps.apple.com/app/id1449148271)
+
+## Optional
+
+- [Full content snapshot](https://astrologyx.com/llms-full.txt): full marketing copy + FAQ in Markdown, suitable for ingestion

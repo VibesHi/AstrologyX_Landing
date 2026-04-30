@@ -1,0 +1,42 @@
+---
+import { APP_VERSION, LEGAL_NAME } from '../../config';
+
+const facts: ReadonlyArray<{ label: string; value: string }> = [
+  { label: 'Platform', value: 'iOS 16+' },
+  { label: 'Languages', value: 'English, Russian' },
+  { label: 'Price', value: 'Free + optional IAP' },
+  { label: 'Data source', value: 'NASA ephemeris' },
+  { label: 'Publisher', value: LEGAL_NAME },
+  { label: 'Version', value: APP_VERSION },
+];
+---
+<section
+  id="overview"
+  class="border-t border-white/[0.04] section-pad-y"
+  style="background: #131313;"
+  aria-label="What is AstrologyX"
+>
+  <div class="max-w-4xl mx-auto px-5 sm:px-6 lg:px-12">
+    <p
+      class="text-balance text-white leading-relaxed mb-12 sm:mb-14"
+      style="font-size: clamp(1.125rem, 0.95rem + 0.7vw, 1.5rem);"
+    >
+      <strong class="font-semibold">AstrologyX is a precision astrology app for iPhone.</strong>
+      It generates personalized daily horoscopes, full birth charts, and real-time planetary
+      transit insights — all calculated from NASA ephemeris data and tailored to your unique chart.
+    </p>
+
+    <dl class="grid grid-cols-2 sm:grid-cols-3 gap-y-7 gap-x-10 sm:gap-x-12">
+      {facts.map(({ label, value }) => (
+        <div>
+          <dt class="text-[#5e5e5e] font-mono text-[10px] uppercase tracking-widest mb-1.5">
+            {label}
+          </dt>
+          <dd class="text-white text-sm sm:text-base leading-snug">
+            {value}
+          </dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+</section>

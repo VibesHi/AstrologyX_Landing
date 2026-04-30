@@ -1,0 +1,31 @@
+---
+import { FAQ_ITEMS } from '../../data/faq';
+---
+<section
+  id="faq"
+  class="border-t border-white/[0.04] section-pad-y"
+  style="background: #131313;"
+  aria-labelledby="faq-heading"
+>
+  <div class="max-w-3xl mx-auto px-5 sm:px-6 lg:px-12">
+    <h2
+      id="faq-heading"
+      class="text-3xl sm:text-4xl font-black uppercase text-white tracking-tight text-balance mb-12 sm:mb-16"
+    >
+      Frequently Asked Questions
+    </h2>
+
+    <dl class="space-y-0 divide-y divide-white/[0.06]">
+      {FAQ_ITEMS.map(({ question, answer }) => (
+        <div class="faq-item py-7 sm:py-8">
+          <dt class="text-lg sm:text-xl font-semibold text-white mb-3 leading-snug">
+            {question}
+          </dt>
+          <dd class="text-[#c6c6c6] leading-relaxed" style="font-size: var(--text-body, 1rem);">
+            {answer}
+          </dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+</section>
