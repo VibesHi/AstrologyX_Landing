@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+
+# LLM crawlers — allow by default, opt out below if needed
+# User-agent: GPTBot
+# Disallow: /
+# User-agent: ClaudeBot
+# Disallow: /
+# User-agent: PerplexityBot
+# Disallow: /
+
+Sitemap: https://astrologyx.com/sitemap-index.xml

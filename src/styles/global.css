@@ -105,6 +105,28 @@ body {
   }
 }
 
+/* ── Skip-to-main-content link (a11y) ───────────── */
+.skip-link {
+  position: absolute;
+  left: 0.75rem;
+  top: -3rem;
+  z-index: 100;
+  padding: 0.6rem 1rem;
+  background: #ffffff;
+  color: #131313;
+  font-weight: 700;
+  font-size: 0.875rem;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: top 0.18s ease;
+}
+.skip-link:focus,
+.skip-link:focus-visible {
+  top: 0.75rem;
+  outline: 2px solid #131313;
+  outline-offset: 2px;
+}
+
 .section-pad {
   padding-top: var(--space-section);
   padding-bottom: var(--space-section);

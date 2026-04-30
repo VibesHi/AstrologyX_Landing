@@ -7,14 +7,112 @@ import Benefits from '../components/sections/Benefits.astro';
 import AppShowcase from '../components/sections/AppShowcase.astro';
 import FeatureDive from '../components/sections/FeatureDive.astro';
 import FinalCTA from '../components/sections/FinalCTA.astro';
+import FAQ from '../components/sections/FAQ.astro';
+import { FAQ_ITEMS } from '../data/faq';
+import {
+  APP_LANGUAGES,
+  APP_NAME,
+  APP_STORE_ID,
+  APP_STORE_URL,
+  APP_VERSION,
+  LEGAL_NAME,
+  SITE_URL,
+} from '../config';
+
+const buildIso = new Date().toISOString();
+
+const softwareAppSchema = {
+  '@context': 'https://schema.org',
+  '@type': ['SoftwareApplication', 'MobileApplication'],
+  '@id': `${SITE_URL}/#software`,
+  name: APP_NAME,
+  alternateName: 'AstrologyX: Birth Chart & Horoscope',
+  operatingSystem: 'iOS 16+',
+  applicationCategory: 'LifestyleApplication',
+  applicationSubCategory: 'Astrology',
+  url: SITE_URL,
+  downloadUrl: APP_STORE_URL,
+  installUrl: APP_STORE_URL,
+  softwareVersion: APP_VERSION,
+  inLanguage: [...APP_LANGUAGES],
+  dateModified: buildIso,
+  identifier: `apple-app-id:${APP_STORE_ID}`,
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'USD',
+    availability: 'https://schema.org/InStock',
+  },
+  featureList: [
+    'Personalized daily horoscopes',
+    'Birth chart (natal chart) readings',
+    'Real-time planetary transit tracking',
+    'Synastry compatibility analysis',
+    'NASA-powered ephemeris data',
+  ],
+  description:
+    'AstrologyX is a precision astrology app for iPhone. Get your personalized birth chart, daily horoscope, planetary transits, and synastry compatibility — powered by NASA star-position data.',
+  screenshot: [
+    `${SITE_URL}/birthChartImage.png`,
+    `${SITE_URL}/planetaryMotionImage.png`,
+    `${SITE_URL}/insightsImage.png`,
+  ],
+  image: `${SITE_URL}/og-image.png`,
+  creator: {
+    '@type': 'Organization',
+    name: LEGAL_NAME,
+    legalName: LEGAL_NAME,
+  },
+  publisher: { '@id': `${SITE_URL}/#organization` },
+  // TODO: re-enable once rating value is confirmed (see PR notes)
+  // aggregateRating: {
+  //   '@type': 'AggregateRating',
+  //   ratingValue: '3.55',
+  //   ratingCount: 9,
+  //   bestRating: 5,
+  //   worstRating: 1,
+  // },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: FAQ_ITEMS.map(({ question, answer }) => ({
+    '@type': 'Question',
+    name: question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: answer,
+    },
+  })),
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Home',
+      item: SITE_URL + '/',
+    },
+  ],
+};
 ---
 <BaseLayout>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(softwareAppSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  </Fragment>
   <Nav />
   <main id="main-content" class="min-w-0">
     <Hero />
     <Benefits />
     <AppShowcase />
     <FeatureDive />
+    <FAQ />
     <FinalCTA />
   </main>
   <Footer />
