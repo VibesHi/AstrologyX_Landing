@@ -66,9 +66,10 @@ const softwareAppSchema = {
   },
   publisher: { '@id': `${SITE_URL}/#organization` },
   // TODO: re-enable once rating value is confirmed (see PR notes)
+  // uncomment the aggregateRating block. With only 9 ratings you'll be below Google's typical rich-result threshold either way; consider waiting for ~50+ reviews before enabling it. 
   // aggregateRating: {
   //   '@type': 'AggregateRating',
-  //   ratingValue: '3.55',
+  //   ratingValue: '4.11',
   //   ratingCount: 9,
   //   bestRating: 5,
   //   worstRating: 1,
